@@ -22,8 +22,7 @@ public class Journee {
     public Journee() {
     }
 
-    public Journee(Long id, Integer numero, Long idChampionat) {
-        this.id = id;
+    public Journee(Integer numero, Long idChampionat) {
         this.numero = numero;
         this.idChampionat = idChampionat;
     }

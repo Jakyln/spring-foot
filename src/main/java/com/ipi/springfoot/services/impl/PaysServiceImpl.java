@@ -6,9 +6,11 @@ import com.ipi.springfoot.pojos.Championat;
 import com.ipi.springfoot.pojos.Pays;
 import com.ipi.springfoot.services.PaysService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PaysServiceImpl implements PaysService {
 
     @Autowired

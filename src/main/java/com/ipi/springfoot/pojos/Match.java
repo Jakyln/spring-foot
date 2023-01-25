@@ -33,8 +33,7 @@ public class Match {
     public Match() {
     }
 
-    public Match(Long id, Integer pointEquipe1, Integer pointEquipe2, Long idStade, Long idEquipe1, Long idEquipe2, Long idJournee) {
-        this.id = id;
+    public Match(Integer pointEquipe1, Integer pointEquipe2, Long idStade, Long idEquipe1, Long idEquipe2, Long idJournee) {
         this.pointEquipe1 = pointEquipe1;
         this.pointEquipe2 = pointEquipe2;
         this.idStade = idStade;

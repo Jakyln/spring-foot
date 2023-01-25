@@ -6,9 +6,11 @@ import com.ipi.springfoot.pojos.Journee;
 import com.ipi.springfoot.pojos.Match;
 import com.ipi.springfoot.services.JourneeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class JourneeServiceImpl implements JourneeService {
 
     @Autowired

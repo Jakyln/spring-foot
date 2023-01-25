@@ -2,6 +2,7 @@ package com.ipi.springfoot.pojos;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Equipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
-    private Date dateCreation;
+    private LocalDate dateCreation;
     private Long idStade;
     private String logo;
     private String nomEntraineur;
@@ -37,8 +38,7 @@ public class Equipe {
     public Equipe() {
     }
 
-    public Equipe(Long id, String nom, Date dateCreation, Long idStade, String logo, String nomEntraineur, String president, String status, String siege, String telephone, String siteWeb) {
-        this.id = id;
+    public Equipe(String nom, LocalDate dateCreation, Long idStade, String logo, String nomEntraineur, String president, String status, String siege, String telephone, String siteWeb) {
         this.nom = nom;
         this.dateCreation = dateCreation;
         this.idStade = idStade;
@@ -67,11 +67,11 @@ public class Equipe {
         this.nom = nom;
     }
 
-    public Date getDateCreation() {
+    public LocalDate getDateCreation() {
         return dateCreation;
     }
 
-    public void setDateCreation(Date dateCreation) {
+    public void setDateCreation(LocalDate dateCreation) {
         this.dateCreation = dateCreation;
     }
 

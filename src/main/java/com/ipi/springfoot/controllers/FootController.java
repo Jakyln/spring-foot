@@ -1,5 +1,6 @@
 package com.ipi.springfoot.controllers;
 
+import com.ipi.springfoot.pojos.Equipe;
 import com.ipi.springfoot.services.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,7 @@ public class FootController {
     @PostConstruct
     private void init() {
         System.out.println("DB construite");
+        Equipe equipe1 = new Equipe(Date)
     }
 
 }

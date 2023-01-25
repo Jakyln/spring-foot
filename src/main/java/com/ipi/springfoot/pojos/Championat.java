@@ -2,6 +2,7 @@ package com.ipi.springfoot.pojos;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,8 +14,8 @@ public class Championat {
     private Long id;
     private String nom;
     private String logo;
-    private Date dateDebut;
-    private Date dateFin;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
     private Integer pointGagne;
     private Integer pointPerdu;
     private Integer pointNul;
@@ -32,8 +33,7 @@ public class Championat {
     public Championat() {
     }
 
-    public Championat(Long id, String nom, String logo, Date dateDebut, Date dateFin, Integer pointGagne, Integer pointPerdu, Integer pointNul, String typeClassement) {
-        this.id = id;
+    public Championat(String nom, String logo, LocalDate dateDebut, LocalDate dateFin, Integer pointGagne, Integer pointPerdu, Integer pointNul, String typeClassement) {
         this.nom = nom;
         this.logo = logo;
         this.dateDebut = dateDebut;
@@ -68,19 +68,19 @@ public class Championat {
         this.logo = logo;
     }
 
-    public Date getDateDebut() {
+    public LocalDate getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(LocalDate dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
 
