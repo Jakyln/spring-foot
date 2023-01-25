@@ -6,9 +6,11 @@ import com.ipi.springfoot.pojos.Equipe;
 import com.ipi.springfoot.pojos.Match;
 import com.ipi.springfoot.services.EquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class EquipeServiceImpl implements EquipeService {
 
     @Autowired

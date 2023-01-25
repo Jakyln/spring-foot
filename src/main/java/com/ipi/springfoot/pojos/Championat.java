@@ -32,8 +32,7 @@ public class Championat {
     public Championat() {
     }
 
-    public Championat(Long id, String nom, String logo, Date dateDebut, Date dateFin, Integer pointGagne, Integer pointPerdu, Integer pointNul, String typeClassement) {
-        this.id = id;
+    public Championat(String nom, String logo, Date dateDebut, Date dateFin, Integer pointGagne, Integer pointPerdu, Integer pointNul, String typeClassement, Pays pays) {
         this.nom = nom;
         this.logo = logo;
         this.dateDebut = dateDebut;
@@ -42,6 +41,7 @@ public class Championat {
         this.pointPerdu = pointPerdu;
         this.pointNul = pointNul;
         this.typeClassement = typeClassement;
+        this.pays = pays;
     }
 
     public Long getId() {
