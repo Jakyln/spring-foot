@@ -7,7 +7,7 @@
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/src/main/resources/css/style.css" />
 
     <link
       rel="stylesheet"
@@ -24,9 +24,10 @@
   </head>
 
   <body>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='javascript:history.back()'" style="margin-top: 10%;font-size: large;padding-right: 50px;">Go back</button>
     <div class="container">
       <div class="vertical-center">
-        <table class="table table-borderless" style="background-color: rgb(134, 205, 233);">
+        <table class="table table-borderless" >
           <thead>
             <tr>
               <th scope="col">Team Name</th>
@@ -65,7 +66,7 @@
             <tr class="table-active">
               <th scope="row">
                 Administratif<img
-                  src="/img/fleche.png"
+                  src="/src/main/resources/img/fleche.png"
                   id="image1"
                   onclick="show1()"
                   style="max-width: 3%; float: right"
@@ -97,7 +98,7 @@
             <tr class="table-active content-holder">
               <th scope="row">
                 Statut de lyon<img
-                  src="/img/fleche.png"
+                  src="/src/main/resources/img/fleche.png"
                   id="image2"
                   onclick="show2()"
                   style="max-width: 3%; float: right"
