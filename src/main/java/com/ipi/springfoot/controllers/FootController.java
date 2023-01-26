@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -156,11 +158,42 @@ public class FootController {
         return "hello"; // ou page details
     }*/
 
-    @GetMapping({"/equipes/{id}/detail"})
+/*    @GetMapping({"/equipes/{id}/detail"})
     public String detailEquipe(Model model, @PathVariable long id){
         Equipe equipe = equipeService.recupererEquipe(id);
         model.addAttribute("equipe",equipe);
         return "details"; // ou page details
+    }*/
+
+    @GetMapping({"/championnat/{id}/resultatsListe"})
+    public String listResultatsOfChampionnat(Model model, @PathVariable long id){
+        Equipe equipe = equipeService.recupererEquipe(id);
+        Championat championat = championatService.recupererChampionat(id);
+        //HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
+        List<List<Match>> allMatchOfChampionnat = new ArrayList<>();
+
+        List<Journee> journees = championat.getJournees();
+        for (Journee journee : journees) {
+            List<Match> allMatchOfJournee = journee.getMatches();
+
+/*            for (Match match : matches) {
+                List<Equipe> equipes = new ArrayList<>();
+
+                Equipe equipe1 = equipeService.recupererEquipe(match.getIdEquipe1());
+                Equipe equipe2 = equipeService.recupererEquipe(match.getIdEquipe2());
+                equipes.add(equipe1);
+                equipes.add(equipe2);
+
+                .put(equipes)
+
+            }*/
+            allMatchOfChampionnat.add(allMatchOfJournee);
+        }
+
+
+        model.addAttribute("championat",championat);
+        model.addAttribute("allMatchForAllJournees",allMatchOfChampionnat);
+        return "liste"; // ou page details
     }
 
 }
