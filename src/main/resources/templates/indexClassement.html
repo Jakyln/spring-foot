@@ -43,8 +43,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-th-each="equipeStats : ${ equipeChampionatStats }">
-                <th scope="row">1</th>
+              <tr data-th-each="equipeStats,iter : ${ equipeChampionatStats }">
+                <th scope="row" data-th-text="${iter.index + 1}">1</th>
                 <td data-th-text="${equipeStats.equipe.nom}">Paris-SG</td>
                 <!--<td>1^fleche</td>-->
                 <td data-th-text="${equipeStats.maxJournee}">12</td>
