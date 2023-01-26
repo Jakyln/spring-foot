@@ -30,7 +30,7 @@
         <table class="table table-borderless" >
           <thead>
             <tr>
-              <th scope="col">Team Name</th>
+              <th scope="col" data-th-text="${'Team ' + equipe.nom}">Team Name</th>
             </tr>
           </thead>
           <tbody>
@@ -38,28 +38,28 @@
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Nom :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.nom}">@text</span>
               </th>
             </tr>
             <tr>
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Fondé en :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.dateCreation}">@text</span>
               </th>
             </tr>
             <tr>
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Président :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.president}">@text</span>
               </th>
             </tr>
             <tr>
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Entraineur :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.nomEntraineur}">@text</span>
               </th>
             </tr>
 
@@ -77,26 +77,26 @@
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Site :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.siteWeb}">@text</span>
               </th>
             </tr>
             <tr id="content12" >
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Statut :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.status}">@text</span>
               </th>
             </tr>
             <tr id="content13" >
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Siège :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.siege}">@text</span>
               </th>
             </tr>
 
             <tr class="table-active content-holder">
-              <th scope="row">
+              <th scope="row" data-th-text="${'Stade de ' + equipe.nom}">
                 Statut de lyon<img
                   src="/src/main/resources/img/fleche.png"
                   id="image2"
@@ -109,28 +109,28 @@
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Stade :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.stade.nom}">@text</span>
               </th>
             </tr>
             <tr id="content22" >
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Capacité :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.stade.capacite}">@text</span>
               </th>
             </tr>
             <tr id="content23" >
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Adresse du stade :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.stade.adresse}">@text</span>
               </th>
             </tr>
             <tr id="content24" >
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Tel. Stade :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.stade.telephone}">@text</span>
               </th>
             </tr>
           </tbody>

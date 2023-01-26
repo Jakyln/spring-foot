@@ -5,10 +5,16 @@ import com.ipi.springfoot.services.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
+import java.util.List;
 
 @Controller
+@RequestMapping("/")
 public class FootController {
 
     @Autowired
@@ -45,6 +51,24 @@ public class FootController {
         this.journeeService = journeeService;
         this.stadeService = stadeService;
         this.matchService = matchService;
+    }
+
+    @GetMapping({"/", "details_equipe"})
+    public String details_equipe(Model model, @RequestParam long idEquipe) {
+        Equipe equipe = equipeService.recupererEquipe(idEquipe);
+        model.addAttribute("equipe", equipe);
+
+        return "details";
+    }
+
+    @GetMapping({"/", "details_championat"})
+    public String details_championat(Model model, @RequestParam long idChampionat) {
+        Championat championat = championatService.recupererChampionat(idChampionat);
+        List<Equipe> equipes = championat.getEquipes();
+
+        model.addAttribute("championat", championat);
+
+        return "details";
     }
 
     @PostConstruct
