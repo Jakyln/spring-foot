@@ -33,11 +33,11 @@
           <table data-th-each="allMatchesForOneJournee : ${allMatchForAllJournees}">
             <tr data-th-each="match : ${allMatchesForOneJournee}">
               <td>
-                <span class="equipe link onclick="window.location.href='/details.html' data-th-text="${match.equipe1}">Équipe A</span>
+                <span class="equipe link onclick="window.location.href='/details.html' data-th-text="${match.equipe1.nom}">Équipe A</span>
                 <img
                 onclick="window.location.href='/details.html'"
                   class="logoA"
-                  src="/src/main/resources/img/ol.png"
+                  data-th-src="@{/img/${match.equipe1.logo}}"
                   alt="Logo de l'équipe A"
                 />
               </td>
@@ -46,7 +46,7 @@
                 <img
                 onclick="window.location.href='/details.html'"
                   class="logoB"
-                  src="/src/main/resources/img/om.png"
+                  data-th-src="@{/img/${match.equipe2.logo}}"
                   alt="Logo de l'équipe B"
                 />
                 <span class="equipe link" data-th-text="${match.equipe2.nom}" onclick="window.location.href='/details.html'">equipe link B</span>
@@ -54,29 +54,6 @@
             </tr>
           </table>
           <h2 style="background-color: rgb(85, 147, 172)"><span class="date">date</span></h2>
-          <!--<table>
-            <tr>
-              <td>
-                <span class="equipe link" onclick="window.location.href='/details.html'">Équipe A</span>
-                <img
-                  onclick="window.location.href='/details.html'"
-                  class="logoA"
-                  src="/src/main/resources/img/ol.png"
-                  alt="Logo de l'équipe A"
-                />
-              </td>
-              <td class="result">2 - 1</td>
-              <td>
-                <img
-                  onclick="window.location.href='/details.html'"
-                  class="logoB"
-                  src="/src/main/resources/img/om.png"
-                  alt="Logo de l'équipe B"
-                />
-                <span class="equipe link" onclick="window.location.href='/details.html'">equipe link B</span>
-              </td>
-            </tr>
-          </table>-->
         </table>
       </div>
     </div>
