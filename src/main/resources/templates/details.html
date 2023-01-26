@@ -30,7 +30,7 @@
         <table class="table table-borderless" >
           <thead>
             <tr>
-              <th scope="col">Team Name</th>
+              <th scope="col" data-th-text="${'Team ' + equipe.nom}">Team Name</th>
             </tr>
           </thead>
           <tbody>
@@ -96,7 +96,7 @@
             </tr>
 
             <tr class="table-active content-holder">
-              <th scope="row">
+              <th scope="row" data-th-text="${'Stade de ' + equipe.nom}">
                 Statut de lyon<img
                   src="/src/main/resources/img/fleche.png"
                   id="image2"
