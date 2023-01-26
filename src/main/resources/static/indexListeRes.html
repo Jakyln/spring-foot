@@ -6,225 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    <title>Calendrier</title>
+    <title>Résultats</title>
 </head>
 
 <body>
-
 <div class="container">
-    <div class="day-select w-25 mt-2 mb-3">
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Séléction des jours</option>
-            <option value="1">1ère Journée</option>
-            <option value="2">2ème Journée</option>
-            <option value="3">3ème Journée</option>
-        </select>
-    </div>
-    <div class="titre mb-3">
-        <h2>
-            <strong>Calendrier et résultats Ligue 1 Uber eats 2022-2023</strong>
-        </h2>
-
-    </div>
-    <div class="allrowsVertical ">
-        <div class="row1 card mb-4 border-top-0 border-start-0 border-end-0">
-            <div class="card-header ">
-                Vendredi 11 nov.
-            </div>
-            <ul class="list-group list-group-flush   ">
-                <li class="list-group-item subItem1  d-flex justify-content-center mb-3">
-                    <div class=" w-25">
-                        <div class="d-flex justify-content-around">
-                            <div class="club1Nom">Lyon</div>
-                            <div class="club1Logo"  >
-                                <img src="images/icon_club_OL.png" alt="" style="width:20px;height:20px">
-                            </div>
-                            <div class="score bg-dark p-2">
-                                <div class="text-light">1-1</div>
-                            </div>
-                            <div class="club2Logo">
-                                <div class="club1Logo"  >
-                                    <img src="images/icon_club_OL.png" alt="" style="width:20px;height:20px">
-                                </div>
-                            </div>
-                            <div class="club2Nom">Nice</div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+    <div class="row">
+        <div class="title mb-3">
+            <h2><strong>Résultats par compétitions</strong></h2>
 
         </div>
-        <div class="row1 card mb-4 border-top-0 border-start-0 border-end-0">
-            <div class="card-header">
-                Samedi 12 nov.
-            </div>
-            <ul class="list-group list-group-flush   ">
-                <li class="list-group-item subItem1  d-flex justify-content-center mb-3">
-                    <div class=" w-50">
-                        <div class="d-flex ">
-                            <div class="club1Nom col-3">Lens</div>
-                            <div class="club1Logo col-1"  >
-                                <img src="images/icon_club_Lens.webp" alt="" style="width:20px;height:20px">
-                            </div>
-                            <div class="score bg-dark p-2 col-2 text-center">
-                                <div class="text-light"><strong>2</strong>-1</div>
-                            </div>
-                            <div class="club2Logo">
-                                <div class="club1Logo"  >
-                                    <img src="images/icon_club_Clermont.png" alt="" style="width:20px;height:20px">
-                                </div>
-                            </div>
-                            <div class="club2Nom">Clermont</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item subItem1  d-flex justify-content-center mb-3">
-                    <div class=" w-25">
-                        <div class="d-flex justify-content-around">
-                            <div class="club1Nom">Rennes</div>
-                            <div class="club1Logo"  >
-                                <img src="images/icon_club_Rennes.png" alt="" style="width:20px;height:20px">
-                            </div>
-                            <div class="score bg-dark p-2">
-                                <div class="text-light"><strong>2</strong>-1</div>
-                            </div>
-                            <div class="club2Logo">
-                                <div class="club1Logo"  >
-                                    <img src="images/icon_club_Toulouse.png" alt="" style="width:20px;height:20px">
-                                </div>
-                            </div>
-                            <div class="club2Nom">Toulouse</div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+        <div class="bar bg-light mb-1" style="height: 12px;"></div>
+        <div class="subtitle mb-2 text-muted">
+            <h5>FRANCE</h5>
 
         </div>
+        <div class="bar-thin bg-light mb-2" style="height: 2px;"></div>
+        <div class="rowLigues d-flex justify-content-between mt-2 col-9">
+            <div class="Ligue row">
+                <div class="col-6 d-flex align-items-center justify-content-end">
+                    <img src="images/flagFrance.png" alt="franceFlag" style="width:20px;height:20px">
 
-        <div class="row1 card mb-4 border-top-0 border-start-0 border-end-0">
-            <div class="card-header">
-                Dimanche 13 nov.
+                </div>
+                <div class="col-6 text-nowrap d-flex justify-content-end text-secondary">Ligue 1</div>
             </div>
-            <ul class="list-group list-group-flush   ">
-                <li class="list-group-item subItem1  d-flex justify-content-center mb-3">
-                    <div class=" w-25">
-                        <div class="d-flex justify-content-around">
-                            <div class="club1Nom">Paris-SG</div>
-                            <div class="club1Logo"  >
-                                <img src="images/icon_club_ParisSG.png" alt="" style="width:20px;height:20px">
-                            </div>
-                            <div class="score bg-dark p-2">
-                                <div class="text-light"><strong>5</strong>-0</div>
-                            </div>
-                            <div class="club2Logo">
-                                <div class="club1Logo"  >
-                                    <img src="images/icon_club_Auxerre.png" alt="" style="width:20px;height:20px">
-                                </div>
-                            </div>
-                            <div class="club2Nom">Auxerre</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item subItem1  d-flex justify-content-center mb-3">
-                    <div class=" w-25">
-                        <div class="d-flex justify-content-around">
-                            <div class="club1Nom">Lille</div>
-                            <div class="club1Logo"  >
-                                <img src="images/icon_club_Lille.png" alt="" style="width:20px;height:20px">
-                            </div>
-                            <div class="score bg-dark p-2">
-                                <div class="text-light"><strong>1</strong>-0</div>
-                            </div>
-                            <div class="club2Logo">
-                                <div class="club1Logo"  >
-                                    <img src="images/icon_club_Angers.png" alt="" style="width:20px;height:20px">
-                                </div>
-                            </div>
-                            <div class="club2Nom">Angers</div>
-                        </div>
-                    </div>
-                </li>
+            <div class="Ligue row">
+                <div class="col-6 d-flex align-items-center justify-content-end">
+                    <img src="images/flagFrance.png" alt="franceFlag" style="width:20px;height:20px">
 
 
-
-                <li class="list-group-item subItem1  d-flex justify-content-center mb-3">
-                    <div class=" w-25">
-                        <div class="d-flex justify-content-around">
-                            <div class="club1Nom">Montpellier</div>
-                            <div class="club1Logo"  >
-                                <img src="images/icon_club_Montpellier.png" alt="" style="width:20px;height:20px">
-                            </div>
-                            <div class="score bg-dark p-2">
-                                <div class="text-light">1-0</div>
-                            </div>
-                            <div class="club2Logo">
-                                <div class="club1Logo"  >
-                                    <img src="images/icon_club_Reims.png" alt="" style="width:20px;height:20px">
-                                </div>
-                            </div>
-                            <div class="club2Nom">Reims</div>
-                        </div>
-                    </div>
-                </li><li class="list-group-item subItem1  d-flex justify-content-center mb-3">
-                <div class=" w-25">
-                    <div class="d-flex justify-content-around">
-                        <div class="club1Nom">Brest</div>
-                        <div class="club1Logo"  >
-                            <img src="images/icon_club_Brest.png" alt="" style="width:20px;height:20px">
-                        </div>
-                        <div class="score bg-dark p-2">
-                            <div class="text-light"><strong>2</strong>-1</div>
-                        </div>
-                        <div class="club2Logo">
-                            <div class="club1Logo"  >
-                                <img src="images/icon_club_Troyes.png" alt="" style="width:20px;height:20px">
-                            </div>
-                        </div>
-                        <div class="club2Nom">Troyes</div>
-                    </div>
                 </div>
-            </li><li class="list-group-item subItem1  d-flex justify-content-center mb-3">
-                <div class=" w-25">
-                    <div class="d-flex justify-content-around">
-                        <div class="club1Nom">Nantes</div>
-                        <div class="club1Logo"  >
-                            <img src="images/icon_club_Nantes.png" alt="" style="width:20px;height:20px">
-                        </div>
-                        <div class="score bg-dark p-2">
-                            <div class="text-light">2-2</div>
-                        </div>
-                        <div class="club2Logo">
-                            <div class="club1Logo"  >
-                                <img src="images/icon_club_ACajacio.png" alt="" style="width:20px;height:20px">
-                            </div>
-                        </div>
-                        <div class="club2Nom">AC Ajaccio</div>
-                    </div>
-                </div>
-            </li><li class="list-group-item subItem1  d-flex justify-content-center mb-3">
-                <div class=" w-25">
-                    <div class="d-flex justify-content-around">
-                        <div class="club1Nom">Strasbourg</div>
-                        <div class="club1Logo"  >
-                            <img src="images/icon_club_Strasbourg.png" alt="" style="width:20px;height:20px">
-                        </div>
-                        <div class="score bg-dark p-2">
-                            <div class="text-light">1-0</div>
-                        </div>
-                        <div class="club2Logo">
-                            <div class="club1Logo"  >
-                                <img src="images/icon_club_Lorient.png" alt="" style="width:20px;height:20px">
-                            </div>
-                        </div>
-                        <div class="club2Nom">Lorient</div>
-                    </div>
-                </div>
-            </li>
-            </ul>
+                <div class="col-6 text-nowrap d-flex justify-content-end text-secondary">Ligue 2</div>
+            </div>
+            <div class="Ligue row">
+                <div class="col-6 d-flex align-items-center justify-content-end">
+                    <img src="images/flagFrance.png" alt="franceFlag" style="width:20px;height:20px">
 
+                </div>
+                <div class="col-6 text-nowrap d-flex justify-content-end text-secondary">National</div>
+            </div>
+            <div class="Ligue row">
+                <div class="col-6 d-flex align-items-center justify-content-end">
+                    <img src="images/flagFrance.png" alt="franceFlag" style="width:20px;height:20px">
+
+                </div>
+                <div class="col-6 text-nowrap d-flex justify-content-center text-secondary">D1 féminine</div>
+            </div>
         </div>
+
+
     </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
