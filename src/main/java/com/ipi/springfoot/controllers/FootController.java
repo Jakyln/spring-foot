@@ -61,15 +61,20 @@ public class FootController {
         return "details";
     }
 
-    @GetMapping({"/", "details_championat"})
+    /*@GetMapping({"/", "details_championat"})
     public String details_championat(Model model, @RequestParam long idChampionat) {
         Championat championat = championatService.recupererChampionat(idChampionat);
-        List<Equipe> equipes = championat.getEquipes();
-
+        List<Journee> journees = championat.getJournees();
+        List<Match> matches = null;
+        for (Journee journee: journees) {
+            for (Match match: journee.getMatches()) {
+                matches.add(match);
+            }
+        }
         model.addAttribute("championat", championat);
 
         return "details";
-    }
+    }*/
 
     @PostConstruct
     private void init() {
@@ -160,7 +165,7 @@ public class FootController {
             // Récupère les équipe avec leurs id généré lors de leurs insertions
             equipe1 = equipeService.recupererEquipeAll().get(0);
             equipe2 = equipeService.recupererEquipeAll().get(1);
-            Match match1 = new Match(2,0,stade1, equipe1.getId(), equipe2.getId(), journee1);
+            Match match1 = new Match(2,0,stade1, equipe1.getId(), equipe2.getId(), journee1, equipe1, equipe2);
             matchService.ajouterMatch(match1);
 
 
