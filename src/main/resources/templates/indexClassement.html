@@ -43,15 +43,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-th-each="categorie : ${ categories }">
+              <tr data-th-each="equipeStats : ${ equipeChampionatStats }">
                 <th scope="row">1</th>
-                <td>Paris-SG</td>
-                <td>1^fleche</td>
-                <td>12</td>
-                <td>24</td>
-                <td>41</td>
-                <td>42</td>
-                <td>1</td>
+                <td data-th-text="${equipeStats.equipe.nom}">Paris-SG</td>
+                <!--<td>1^fleche</td>-->
+                <td data-th-text="${equipeStats.maxJournee}">12</td>
+                <td data-th-text="${equipeStats.totalPoint}">24</td>
+                <td data-th-text="${equipeStats.matchGagnee}">41</td>
+                <td data-th-text="${equipeStats.matchNul}">42</td>
+                <td data-th-text="${equipeStats.matchPerdu}">1</td>
                 <td>37</td>
                 <td>47</td>
                 <td>+45</td>
