@@ -38,28 +38,28 @@
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Nom :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.nom}">@text</span>
               </th>
             </tr>
             <tr>
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Fondé en :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.dateCreation}">@text</span>
               </th>
             </tr>
             <tr>
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Président :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.president}">@text</span>
               </th>
             </tr>
             <tr>
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Entraineur :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.nomEntraineur}">@text</span>
               </th>
             </tr>
 
@@ -77,21 +77,21 @@
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Site :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.siteWeb}">@text</span>
               </th>
             </tr>
             <tr id="content12" >
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Statut :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.status}">@text</span>
               </th>
             </tr>
             <tr id="content13" >
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Siège :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.siege}">@text</span>
               </th>
             </tr>
 
@@ -109,28 +109,28 @@
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Stade :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.stade.nom}">@text</span>
               </th>
             </tr>
             <tr id="content22" >
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Capacité :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.stade.capacite}">@text</span>
               </th>
             </tr>
             <tr id="content23" >
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Adresse du stade :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.stade.adresse}">@text</span>
               </th>
             </tr>
             <tr id="content24" >
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Tel. Stade :</span
-                ><span>@text</span>
+                ><span data-th-text="${equipe.stade.telephone}">@text</span>
               </th>
             </tr>
           </tbody>

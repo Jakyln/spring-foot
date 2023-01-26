@@ -5,8 +5,13 @@ import com.ipi.springfoot.services.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
+import java.util.List;
 
 @Controller
 public class FootController {
@@ -143,6 +148,19 @@ public class FootController {
             System.out.println("Donnees ajoutees");
         }
         System.out.println("DB construite");
+    }
+
+/*    @GetMapping({"/", "index"})
+    public String detailEquipe(Model model, @RequestParam long id){
+
+        return "hello"; // ou page details
+    }*/
+
+    @GetMapping({"/equipes/{id}/detail"})
+    public String detailEquipe(Model model, @PathVariable long id){
+        Equipe equipe = equipeService.recupererEquipe(id);
+        model.addAttribute("equipe",equipe);
+        return "details"; // ou page details
     }
 
 }
