@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<title>Create an account</title>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+
+<body>
+    <form action="/action_page.php">
+        <h1>Create an account</h1>
+
+        <div class="formcontainer">
+            <div class="container">
+                <label for="uname"><strong>Username</strong></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><strong>Password</strong></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="psw"><strong>Confirm password</strong></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+            </div>
+            <button type="submit"><strong>Create account</strong></button>
+            <div class="d-flex flex-row align-items-center justify-content-between">
+                <a href="login.html">Log in</a>
+            </div>
+        </div>
+    </form>
+</body>
