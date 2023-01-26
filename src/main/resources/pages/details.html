@@ -24,10 +24,17 @@
   </head>
 
   <body>
-    <button type="button" class="btn btn-primary" onclick="window.location.href='javascript:history.back()'" style="margin-top: 10%;font-size: large;padding-right: 50px;">Go back</button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="window.location.href='javascript:history.back()'"
+      style="margin-top: 10%; font-size: large; padding-right: 50px"
+    >
+      Go back
+    </button>
     <div class="container">
       <div class="vertical-center">
-        <table class="table table-borderless" >
+        <table class="table table-borderless">
           <thead>
             <tr>
               <th scope="col">Team Name</th>
@@ -73,21 +80,21 @@
                 />
               </th>
             </tr>
-            <tr id="content1" >
+            <tr id="content1">
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Site :</span
                 ><span>@text</span>
               </th>
             </tr>
-            <tr id="content12" >
+            <tr id="content12">
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Statut :</span
                 ><span>@text</span>
               </th>
             </tr>
-            <tr id="content13" >
+            <tr id="content13">
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Siège :</span
@@ -105,28 +112,28 @@
                 />
               </th>
             </tr>
-            <tr id="content2" >
+            <tr id="content2">
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Stade :</span
                 ><span>@text</span>
               </th>
             </tr>
-            <tr id="content22" >
+            <tr id="content22">
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Capacité :</span
                 ><span>@text</span>
               </th>
             </tr>
-            <tr id="content23" >
+            <tr id="content23">
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Adresse du stade :</span
                 ><span>@text</span>
               </th>
             </tr>
-            <tr id="content24" >
+            <tr id="content24">
               <th scope="row">
                 <span style="color: rgb(102, 101, 101); font-size: small"
                   >Tel. Stade :</span
@@ -140,7 +147,7 @@
   </body>
 
   <script>
-    function show1 () {
+    function show1() {
       let element1 = document.getElementById("content1");
       let element12 = document.getElementById("content12");
       let element13 = document.getElementById("content13");
@@ -156,7 +163,7 @@
         element12.setAttribute("hidden", "hidden");
         element13.setAttribute("hidden", "hidden");
       }
-    };
+    }
 
     function show2() {
       let element2 = document.getElementById("content2");
