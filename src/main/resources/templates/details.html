@@ -43,30 +43,50 @@
           <tbody>
             <tr>
               <th scope="row">
-                <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Nom :</span
-                ><span data-th-text="${equipe.nom}">@text</span>
+                  <div class="form-group">
+                    <span style="color: rgb(102, 101, 101); font-size: small">
+                    <label class="form-control-label" for="equipeNom">Nom :</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="equipeNom" id="equipeNom" data-th-value="${equipe.nom}">
+                    </div>
+                    </span>
+                  </div>
               </th>
             </tr>
             <tr>
               <th scope="row">
-                <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Fondé en :</span
-                ><span data-th-text="${equipe.dateCreation}">@text</span>
+                <div class="form-group">
+                    <span style="color: rgb(102, 101, 101); font-size: small">
+                    <label class="form-control-label" for="equipeDate">Fondé en :</label>
+                    <div class="input-group">
+                      <input type="datetime-local" class="form-control" name="equipeDate" id="equipeDate" data-th-value="${equipe.dateCreation}">
+                    </div>
+                    </span>
+                </div>
               </th>
             </tr>
             <tr>
               <th scope="row">
-                <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Président :</span
-                ><span data-th-text="${equipe.president}">@text</span>
+                <div class="form-group">
+                    <span style="color: rgb(102, 101, 101); font-size: small">
+                    <label class="form-control-label" for="equipePresident">Président :</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="equipePresident" id="equipePresident" data-th-value="${equipe.president}">
+                    </div>
+                    </span>
+                </div>
               </th>
             </tr>
             <tr>
               <th scope="row">
-                <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Entraineur :</span
-                ><span data-th-text="${equipe.nomEntraineur}">@text</span>
+                <div class="form-group">
+                    <span style="color: rgb(102, 101, 101); font-size: small">
+                    <label class="form-control-label" for="equipeEntraineur">Entraineur :</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="equipeEntraineur" id="equipeEntraineur" data-th-value="${equipe.nomEntraineur}">
+                    </div>
+                    </span>
+                </div>
               </th>
             </tr>
 
@@ -82,23 +102,38 @@
             </tr>
             <tr id="content1">
               <th scope="row">
-                <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Site :</span
-                ><span data-th-text="${equipe.siteWeb}">@text</span>
+                <div class="form-group">
+                    <span style="color: rgb(102, 101, 101); font-size: small">
+                    <label class="form-control-label" for="equipeSiteWeb">Site Web :</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="equipeSiteWeb" id="equipeSiteWeb" data-th-value="${equipe.siteWeb}">
+                    </div>
+                    </span>
+                </div>
               </th>
             </tr>
             <tr id="content12">
               <th scope="row">
-                <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Statut :</span
-                ><span data-th-text="${equipe.status}">@text</span>
+                <div class="form-group">
+                    <span style="color: rgb(102, 101, 101); font-size: small">
+                    <label class="form-control-label" for="equipeStatus">Status :</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="equipeStatus" id="equipeStatus" data-th-value="${equipe.status}">
+                    </div>
+                    </span>
+                </div>
               </th>
             </tr>
             <tr id="content13">
               <th scope="row">
-                <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Siège :</span
-                ><span data-th-text="${equipe.siege}">@text</span>
+                <div class="form-group">
+                    <span style="color: rgb(102, 101, 101); font-size: small">
+                    <label class="form-control-label" for="equipeSiege">Siege :</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="equipeSiege" id="equipeSiege" data-th-value="${equipe.siege}">
+                    </div>
+                    </span>
+                </div>
               </th>
             </tr>
 

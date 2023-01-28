@@ -55,8 +55,8 @@ public class FootController {
         this.matchService = matchService;
     }
 
-    @GetMapping({"/", "details_equipe"})
-    public String details_equipe(Model model, @RequestParam long idEquipe) {
+    @GetMapping({ "equipe/{idEquipe}/detail"})
+    public String details_equipe(Model model, @PathVariable long idEquipe) {
         Equipe equipe = equipeService.recupererEquipe(idEquipe);
         model.addAttribute("equipe", equipe);
 
