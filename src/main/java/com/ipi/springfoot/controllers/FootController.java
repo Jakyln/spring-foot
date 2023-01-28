@@ -5,8 +5,16 @@ import com.ipi.springfoot.services.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class FootController {
@@ -46,6 +54,29 @@ public class FootController {
         this.stadeService = stadeService;
         this.matchService = matchService;
     }
+
+    @GetMapping({"/", "details_equipe"})
+    public String details_equipe(Model model, @RequestParam long idEquipe) {
+        Equipe equipe = equipeService.recupererEquipe(idEquipe);
+        model.addAttribute("equipe", equipe);
+
+        return "details";
+    }
+
+    /*@GetMapping({"/", "details_championat"})
+    public String details_championat(Model model, @RequestParam long idChampionat) {
+        Championat championat = championatService.recupererChampionat(idChampionat);
+        List<Journee> journees = championat.getJournees();
+        List<Match> matches = null;
+        for (Journee journee: journees) {
+            for (Match match: journee.getMatches()) {
+                matches.add(match);
+            }
+        }
+        model.addAttribute("championat", championat);
+
+        return "details";
+    }*/
 
     @PostConstruct
     private void init() {
@@ -136,13 +167,47 @@ public class FootController {
             // Récupère les équipe avec leurs id généré lors de leurs insertions
             equipe1 = equipeService.recupererEquipeAll().get(0);
             equipe2 = equipeService.recupererEquipeAll().get(1);
-            Match match1 = new Match(2,0,stade1, equipe1.getId(), equipe2.getId(), journee1);
+            Match match1 = new Match(2,0,stade1, equipe1.getId(), equipe2.getId(), journee1, equipe1, equipe2);
             matchService.ajouterMatch(match1);
 
 
             System.out.println("Donnees ajoutees");
         }
         System.out.println("DB construite");
+    }
+
+/*    @GetMapping({"/", "index"})
+    public String detailEquipe(Model model, @RequestParam long id){
+
+        return "hello"; // ou page details
+    }*/
+
+/*    @GetMapping({"/equipes/{id}/detail"})
+    public String detailEquipe(Model model, @PathVariable long id){
+        Equipe equipe = equipeService.recupererEquipe(id);
+        model.addAttribute("equipe",equipe);
+        return "details"; // ou page details
+    }*/
+
+    @GetMapping({"/championnat/{id}/resultatsListe"})
+    public String listResultatsOfChampionnat(Model model, @PathVariable long id){
+        Equipe equipe = equipeService.recupererEquipe(id);
+        Championat championat = championatService.recupererChampionat(id);
+        //HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
+        //List<List<Match>> allMatchOfChampionnat = new ArrayList<>();
+        HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
+
+        List<Journee> journees = championat.getJournees();
+        for (Journee journee : journees) {
+            List<Match> allMatchOfJournee = journee.getMatches();
+
+            allMatchOfChampionnat.put(journee.getNumero().toString(),allMatchOfJournee);
+        }
+
+
+        model.addAttribute("championat",championat);
+        model.addAttribute("allMatchForAllJournees",allMatchOfChampionnat);
+        return "liste"; // ou page details
     }
 
 }

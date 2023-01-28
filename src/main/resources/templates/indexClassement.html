@@ -10,7 +10,6 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/src/main/resources/css/style.css" />
 
     <title>Résultats</title>
   </head>
@@ -21,7 +20,7 @@
           class="table table-borderless"
           style="background-color: rgb(134, 205, 233)"
         >
-          <h1>Classement ligue 1 Uber Eats 2022-2023</h1>
+          <div class="titre" data-th-text="${championat.nom}">Classement ligue 1 Uber Eats 2022-2023</div>
           <table class="table">
             <thead>
               <tr>
@@ -44,23 +43,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-th-each="categorie : ${ categories }">
                 <th scope="row">1</th>
-                <td class="equipe link" onclick="window.location.href='/src/main/resources/pages/details.html'">Paris-SG</td>
-                <td>1^fleche</td>
-                <td>12</td>
-                <td>24</td>
-                <td>41</td>
-                <td>42</td>
-                <td>1</td>
-                <td>37</td>
-                <td>47</td>
-                <td>+45</td>
-                <td>graph</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td class="equipe link" onclick="window.location.href='/src/main/resources/pages/details.html'">Paris-SG</td>
+                <td>Paris-SG</td>
                 <td>1^fleche</td>
                 <td>12</td>
                 <td>24</td>

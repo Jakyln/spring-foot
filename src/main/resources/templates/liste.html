@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Résultats de la compétition de football</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="vertical-center " >
+
+
+        <table class="table table-borderless">
+          <h1>Résultats de la compétition de football</h1>
+          <table data-th-each="allMatchesForOneJournee : ${allMatchForAllJournees}">
+            <h2 style="background-color: rgb(85, 147, 172)"><span class="date" data-th-text="${allMatchesForOneJournee.key}">date</span></h2>
+            <tr data-th-each="match : ${allMatchesForOneJournee.value}">
+              <td>
+                <span class="equipe link onclick="window.location.href='/details.html' data-th-text="${match.equipe1.nom}">Équipe A</span>
+                <img
+                onclick="window.location.href='/details.html'"
+                  class="logoA"
+                  data-th-src="@{/img/{logo}(logo=${match.equipe1.logo})}"
+                  alt="Logo de l'équipe A"
+
+                />
+              </td>
+              <td class="result">2 - 1</td>
+              <td>
+                <img
+                onclick="window.location.href='/details.html'"
+                  class="logoB"
+                data-th-src="@{/img/{logo}(logo=${match.equipe2.logo})}"
+                alt="Logo de l'équipe B"
+
+
+                />
+                <span class="equipe link" data-th-text="${match.equipe2.nom}" onclick="window.location.href='/details.html'">equipe link B</span>
+              </td>
+            </tr>
+          </table>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
