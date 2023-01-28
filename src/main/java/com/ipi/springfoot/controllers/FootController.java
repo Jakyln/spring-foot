@@ -4,12 +4,11 @@ import com.ipi.springfoot.pojos.*;
 import com.ipi.springfoot.services.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -60,6 +59,21 @@ public class FootController {
         Equipe equipe = equipeService.recupererEquipe(idEquipe);
         model.addAttribute("equipe", equipe);
 
+        return "details";
+    }
+
+    @GetMapping({ "equipe/newEquipe"})
+    public String newEquipe(Model model) {
+        Equipe equipe = new Equipe();
+        model.addAttribute("equipe", equipe);
+        return "details";
+    }
+
+
+    @PostMapping(value = "equipe", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String createEmploye(Equipe equipe, final ModelMap model){
+        equipe = equipeService.ajouterEquipe(equipe);
+        model.addAttribute("equipe", equipe);
         return "details";
     }
 
