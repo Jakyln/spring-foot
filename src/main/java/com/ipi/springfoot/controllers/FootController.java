@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -193,24 +194,14 @@ public class FootController {
         Equipe equipe = equipeService.recupererEquipe(id);
         Championat championat = championatService.recupererChampionat(id);
         //HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
-        List<List<Match>> allMatchOfChampionnat = new ArrayList<>();
+        //List<List<Match>> allMatchOfChampionnat = new ArrayList<>();
+        HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
 
         List<Journee> journees = championat.getJournees();
         for (Journee journee : journees) {
             List<Match> allMatchOfJournee = journee.getMatches();
 
-/*            for (Match match : matches) {
-                List<Equipe> equipes = new ArrayList<>();
-
-                Equipe equipe1 = equipeService.recupererEquipe(match.getIdEquipe1());
-                Equipe equipe2 = equipeService.recupererEquipe(match.getIdEquipe2());
-                equipes.add(equipe1);
-                equipes.add(equipe2);
-
-                .put(equipes)
-
-            }*/
-            allMatchOfChampionnat.add(allMatchOfJournee);
+            allMatchOfChampionnat.put(journee.getNumero().toString(),allMatchOfJournee);
         }
 
 

@@ -5,7 +5,7 @@
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/src/main/resources/css/style.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 
     <link
       rel="stylesheet"
@@ -26,19 +26,19 @@
       <div class="vertical-center " >
 
 
-
         <table class="table table-borderless">
           <h1>Résultats de la compétition de football</h1>
-          <h2 style="background-color: rgb(85, 147, 172)"><span class="date">date</span></h2>
           <table data-th-each="allMatchesForOneJournee : ${allMatchForAllJournees}">
-            <tr data-th-each="match : ${allMatchesForOneJournee}">
+            <h2 style="background-color: rgb(85, 147, 172)"><span class="date" data-th-text="${allMatchesForOneJournee.key}">date</span></h2>
+            <tr data-th-each="match : ${allMatchesForOneJournee.value}">
               <td>
                 <span class="equipe link onclick="window.location.href='/details.html' data-th-text="${match.equipe1.nom}">Équipe A</span>
                 <img
                 onclick="window.location.href='/details.html'"
                   class="logoA"
-                  data-th-src="@{/img/${match.equipe1.logo}}"
+                  data-th-src="@{/img/{logo}(logo=${match.equipe1.logo})}"
                   alt="Logo de l'équipe A"
+
                 />
               </td>
               <td class="result">2 - 1</td>
@@ -46,14 +46,15 @@
                 <img
                 onclick="window.location.href='/details.html'"
                   class="logoB"
-                  data-th-src="@{/img/${match.equipe2.logo}}"
-                  alt="Logo de l'équipe B"
+                data-th-src="@{/img/{logo}(logo=${match.equipe2.logo})}"
+                alt="Logo de l'équipe B"
+
+
                 />
                 <span class="equipe link" data-th-text="${match.equipe2.nom}" onclick="window.location.href='/details.html'">equipe link B</span>
               </td>
             </tr>
           </table>
-          <h2 style="background-color: rgb(85, 147, 172)"><span class="date">date</span></h2>
         </table>
       </div>
     </div>
