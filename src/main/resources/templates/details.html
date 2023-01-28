@@ -34,7 +34,7 @@
     </button>
     <div class="container">
       <div class="vertical-center">
-        <form id="equipeSaveForm" data-th-action="equipe" method="post" data-th-object="${equipe}">
+        <form id="equipeSaveForm" data-th-action="@{saveEquipe}" method="post" data-th-object="${equipe}">
           <table class="table table-borderless">
             <thead>
               <tr>
@@ -48,7 +48,7 @@
                       <span style="color: rgb(102, 101, 101); font-size: small">
                       <label class="form-control-label" for="equipeNom">Nom :</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" name="equipeNom" id="equipeNom" data-th-value="*{nom}">
+                        <input type="text" class="form-control" name="equipeNom" id="equipeNom" data-th-field="*{nom}">
                       </div>
                       </span>
                     </div>
@@ -60,7 +60,7 @@
                       <span style="color: rgb(102, 101, 101); font-size: small">
                       <label class="form-control-label" for="equipeDate">Fondé en :</label>
                       <div class="input-group">
-                        <input type="datetime-local" class="form-control" name="equipeDate" id="equipeDate" data-th-value="*{dateCreation}">
+                        <input type="date" class="form-control" name="equipeDate" id="equipeDate" data-th-field="*{dateCreation}">
                       </div>
                       </span>
                   </div>
@@ -72,7 +72,7 @@
                       <span style="color: rgb(102, 101, 101); font-size: small">
                       <label class="form-control-label" for="equipePresident">Président :</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" name="equipePresident" id="equipePresident" data-th-value="*{president}">
+                        <input type="text" class="form-control" name="equipePresident" id="equipePresident" data-th-field="*{president}">
                       </div>
                       </span>
                   </div>
@@ -84,7 +84,7 @@
                       <span style="color: rgb(102, 101, 101); font-size: small">
                       <label class="form-control-label" for="equipeEntraineur">Entraineur :</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" name="equipeEntraineur" id="equipeEntraineur" data-th-value="*{nomEntraineur}">
+                        <input type="text" class="form-control" name="equipeEntraineur" id="equipeEntraineur" data-th-field="*{nomEntraineur}">
                       </div>
                       </span>
                   </div>
@@ -107,7 +107,7 @@
                       <span style="color: rgb(102, 101, 101); font-size: small">
                       <label class="form-control-label" for="equipeSiteWeb">Site Web :</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" name="equipeSiteWeb" id="equipeSiteWeb" data-th-value="*{siteWeb}">
+                        <input type="text" class="form-control" name="equipeSiteWeb" id="equipeSiteWeb" data-th-field="*{siteWeb}">
                       </div>
                       </span>
                   </div>
@@ -119,7 +119,7 @@
                       <span style="color: rgb(102, 101, 101); font-size: small">
                       <label class="form-control-label" for="equipeStatus">Status :</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" name="equipeStatus" id="equipeStatus" data-th-value="*{status}">
+                        <input type="text" class="form-control" name="equipeStatus" id="equipeStatus" data-th-field="*{status}">
                       </div>
                       </span>
                   </div>
@@ -131,7 +131,7 @@
                       <span style="color: rgb(102, 101, 101); font-size: small">
                       <label class="form-control-label" for="equipeSiege">Siege :</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" name="equipeSiege" id="equipeSiege" data-th-value="*{siege}">
+                        <input type="text" class="form-control" name="equipeSiege" id="equipeSiege" data-th-field="*{siege}">
                       </div>
                       </span>
                   </div>
@@ -140,7 +140,8 @@
 
               <tr class="table-active content-holder">
 <!--                <th scope="row" data-th-text="${'Stade de ' + equipe.nom}">-->
-                  Statut de lyon<img
+<!--                  Statut de lyon-->
+                <img
                     src="/src/main/resources/img/fleche.png"
                     id="image2"
                     onclick="show2()"
@@ -148,41 +149,70 @@
                   />
                 </th>
               </tr>
-              <div data-th-if="${equipe.stade} != null">
-                <tr id="content2">
+
+
+
+              <div data-th-if="${equipe.stade} == null">
+                <tr>
                   <th scope="row">
-                  <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Stade :</span
-                  ><span data-th-text="*{stade.nom}">@text</span>
-                  </th>
-                </tr>
-                <tr id="content22">
-                  <th scope="row">
-                  <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Capacité :</span
-                  ><span data-th-text="*{stade.capacite}">@text</span>
-                  </th>
-                </tr>
-                <tr id="content23">
-                  <th scope="row">
-                  <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Adresse du stade :</span
-                  ><span data-th-text="*{stade.adresse}">@text</span>
-                  </th>
-                </tr>
-                <tr id="content24">
-                  <th scope="row">
-                  <span style="color: rgb(102, 101, 101); font-size: small"
-                  >Tel. Stade :</span
-                  ><span data-th-text="*{stade.telephone}">@text</span>
+                  <span style="color: rgb(102, 101, 101); font-size: small">Stade :</span>
+                      <select class="form-select" name="stadeId">
+                          <option data-th-each="unStade : ${allStades}" data-th-value="${unStade.id}" data-th-text="${unStade.nom}">
+                          </option>
+                      </select>
                   </th>
                 </tr>
               </div>
 
+
+              <div data-th-unless="${equipe.stade} == null">
+                <tr id="content2">
+                    <th scope="row">
+                        <span style="color: rgb(102, 101, 101); font-size: small">Stade :</span>
+                        <span data-th-text="*{stade.nom}">@text</span>
+
+                        <select class="form-select" id="stade" name="stade"> <!--data-th-field="*{stade}"-->
+                            <option data-th-each="unStade : ${allStades}" data-th-value="${unStade.id}" data-th-text="${unStade.nom}"> <!--data-th-selected="*{stade.nom}"-->
+                            </option>
+                        </select>
+<!--                        <select class="form-select" name="stadeId">
+                            <option data-th-each="unStade : ${allStades}" data-th-value="${unStade.id}" data-th-text="${unStade.nom}">
+                            </option>
+                        </select>-->
+
+                    </th>
+                </tr>
+                <tr id="content22">
+                    <th scope="row">
+                  <span style="color: rgb(102, 101, 101); font-size: small"
+                  >Capacité :</span
+                  ><span data-th-text="*{stade.capacite}">@text</span>
+                    </th>
+                </tr>
+                <tr id="content23">
+                    <th scope="row">
+                  <span style="color: rgb(102, 101, 101); font-size: small"
+                  >Adresse du stade :</span
+                  ><span data-th-text="*{stade.adresse}">@text</span>
+                    </th>
+                </tr>
+                <tr id="content24">
+                    <th scope="row">
+                  <span style="color: rgb(102, 101, 101); font-size: small"
+                  >Tel. Stade :</span
+                  ><span data-th-text="*{stade.telephone}">@text</span>
+                    </th>
+                </tr>
+            </div>
+
             </tbody>
           </table>
+
+            <button type="submit">Envoyer</button>
         </form>
-          <input form="equipeSaveForm" class="btn btn-primary" type="submit" value="Enregistrer"></input>
+
+
+          <!--          <input form="equipeSaveForm" class="btn btn-primary" type="submit" value="Enregistrer"></input>-->
       </div>
     </div>
   </body>

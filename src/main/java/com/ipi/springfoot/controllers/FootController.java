@@ -3,12 +3,15 @@ package com.ipi.springfoot.controllers;
 import com.ipi.springfoot.pojos.*;
 import com.ipi.springfoot.services.*;
 import jakarta.annotation.PostConstruct;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -57,24 +60,30 @@ public class FootController {
     @GetMapping({ "equipe/{idEquipe}/detail"})
     public String details_equipe(Model model, @PathVariable long idEquipe) {
         Equipe equipe = equipeService.recupererEquipe(idEquipe);
+        List<Stade> stades = stadeService.recupererStadeAll();
+        model.addAttribute("allStades", stades);
+
         model.addAttribute("equipe", equipe);
 
         return "details";
     }
 
     @GetMapping({ "equipe/newEquipe"})
-    public String newEquipe(Model model) {
-        Equipe equipe = new Equipe();
+    public String newEquipe(Model model, @ModelAttribute Equipe equipe) {
+        List<Stade> stades = stadeService.recupererStadeAll();
+        model.addAttribute("allStades", stades);
         model.addAttribute("equipe", equipe);
         return "details";
     }
 
 
-    @PostMapping(value = "equipe", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String createEmploye(Equipe equipe, final ModelMap model){
+    @PostMapping(value = "equipe/saveEquipe")
+    public RedirectView saveEquipe(Model model, @Validated @ModelAttribute Equipe equipe, @RequestParam long stadeId){
+        Stade stade = stadeService.recupererStade(stadeId);
+        equipe.setStade(stade);
         equipe = equipeService.ajouterEquipe(equipe);
         model.addAttribute("equipe", equipe);
-        return "details";
+        return new RedirectView("" + equipe.getId() +"/detail");
     }
 
     /*@GetMapping({"/", "details_championat"})
@@ -91,6 +100,28 @@ public class FootController {
 
         return "details";
     }*/
+
+    @GetMapping({"/championnat/{id}/resultatsListe"})
+    public String listResultatsOfChampionnat(Model model, @PathVariable long id){
+        Equipe equipe = equipeService.recupererEquipe(id);
+        Championat championat = championatService.recupererChampionat(id);
+        //HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
+        //List<List<Match>> allMatchOfChampionnat = new ArrayList<>();
+        HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
+
+        List<Journee> journees = championat.getJournees();
+        for (Journee journee : journees) {
+            List<Match> allMatchOfJournee = journee.getMatches();
+
+            allMatchOfChampionnat.put(journee.getNumero().toString(),allMatchOfJournee);
+        }
+
+
+        model.addAttribute("championat",championat);
+        model.addAttribute("allMatchForAllJournees",allMatchOfChampionnat);
+
+        return "liste"; // ou page details
+    }
 
     @PostConstruct
     private void init() {
@@ -203,25 +234,6 @@ public class FootController {
         return "details"; // ou page details
     }*/
 
-    @GetMapping({"/championnat/{id}/resultatsListe"})
-    public String listResultatsOfChampionnat(Model model, @PathVariable long id){
-        Equipe equipe = equipeService.recupererEquipe(id);
-        Championat championat = championatService.recupererChampionat(id);
-        //HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
-        //List<List<Match>> allMatchOfChampionnat = new ArrayList<>();
-        HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
 
-        List<Journee> journees = championat.getJournees();
-        for (Journee journee : journees) {
-            List<Match> allMatchOfJournee = journee.getMatches();
-
-            allMatchOfChampionnat.put(journee.getNumero().toString(),allMatchOfJournee);
-        }
-
-
-        model.addAttribute("championat",championat);
-        model.addAttribute("allMatchForAllJournees",allMatchOfChampionnat);
-        return "liste"; // ou page details
-    }
 
 }
