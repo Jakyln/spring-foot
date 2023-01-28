@@ -44,6 +44,7 @@
             <tbody>
               <tr>
                 <th scope="row">
+                    <img data-th-if="${equipe.logo} != null" width="35px" height="35px" data-th-src="@{/img/{logo}(logo=${equipe.logo})}" alt="">
                     <div class="form-group">
                       <span style="color: rgb(102, 101, 101); font-size: small">
                       <label class="form-control-label" for="equipeNom">Nom :</label>
@@ -90,11 +91,22 @@
                   </div>
                 </th>
               </tr>
-
+              <tr>
+                  <th scope="row">
+                      <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="equipeTelephone">Telephone :</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="equipeTelephone" id="equipeTelephone" data-th-field="*{telephone}">
+                      </div>
+                      </span>
+                      </div>
+                  </th>
+              </tr>
               <tr class="table-active">
                 <th scope="row">
                   Administratif<img
-                    src="/src/main/resources/img/fleche.png"
+                    data-th-src="@{img/fleche.png}"
                     id="image1"
                     onclick="show1()"
                     style="max-width: 3%; float: right"
@@ -142,10 +154,10 @@
 <!--                <th scope="row" data-th-text="${'Stade de ' + equipe.nom}">-->
 <!--                  Statut de lyon-->
                 <img
-                    src="/src/main/resources/img/fleche.png"
                     id="image2"
                     onclick="show2()"
                     style="max-width: 3%; float: right"
+                    data-th-src="@{img/fleche.png}"
                   />
                 </th>
               </tr>
