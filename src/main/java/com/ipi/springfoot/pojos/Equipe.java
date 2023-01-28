@@ -37,11 +37,9 @@ public class Equipe {
     public Equipe() {
     }
 
-    public Equipe(Long id, String nom, Date dateCreation, Long idStade, String logo, String nomEntraineur, String president, String status, String siege, String telephone, String siteWeb) {
-        this.id = id;
+    public Equipe(String nom, Date dateCreation, String logo, String nomEntraineur, String president, String status, String siege, String telephone, String siteWeb, Stade stade) {
         this.nom = nom;
         this.dateCreation = dateCreation;
-        this.idStade = idStade;
         this.logo = logo;
         this.nomEntraineur = nomEntraineur;
         this.president = president;
@@ -49,6 +47,7 @@ public class Equipe {
         this.siege = siege;
         this.telephone = telephone;
         this.siteWeb = siteWeb;
+        this.stade = stade;
     }
 
     public Long getId() {

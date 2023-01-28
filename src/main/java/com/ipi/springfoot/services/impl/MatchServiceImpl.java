@@ -4,9 +4,11 @@ import com.ipi.springfoot.dao.MatchDao;
 import com.ipi.springfoot.pojos.Match;
 import com.ipi.springfoot.services.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MatchServiceImpl implements MatchService {
 
     @Autowired

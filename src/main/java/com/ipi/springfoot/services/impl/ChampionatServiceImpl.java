@@ -6,9 +6,11 @@ import com.ipi.springfoot.pojos.Championat;
 import com.ipi.springfoot.pojos.Journee;
 import com.ipi.springfoot.services.ChampionatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ChampionatServiceImpl implements ChampionatService {
 
     @Autowired

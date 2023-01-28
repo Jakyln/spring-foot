@@ -19,11 +19,9 @@ public class Pays {
     public Pays() {
     }
 
-    public Pays(Long id, String nom, String logo, List<Championat> championats) {
-        this.id = id;
+    public Pays(String nom, String logo) {
         this.nom = nom;
         this.logo = logo;
-        this.championats = championats;
     }
 
     public Long getId() {

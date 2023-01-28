@@ -24,8 +24,7 @@ public class Stade {
     public Stade() {
     }
 
-    public Stade(Long id, String nom, String adresse, Integer capacite, String telephone) {
-        this.id = id;
+    public Stade(String nom, String adresse, Integer capacite, String telephone) {
         this.nom = nom;
         this.adresse = adresse;
         this.capacite = capacite;

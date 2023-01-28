@@ -11,10 +11,8 @@ public class Match {
     private Long id;
     private Integer pointEquipe1;
     private Integer pointEquipe2;
-    private Long idStade;
     private Long idEquipe1;
     private Long idEquipe2;
-    private Long idJournee;
 
     @ManyToOne
     private Stade stade;
@@ -33,14 +31,13 @@ public class Match {
     public Match() {
     }
 
-    public Match(Long id, Integer pointEquipe1, Integer pointEquipe2, Long idStade, Long idEquipe1, Long idEquipe2, Long idJournee) {
-        this.id = id;
+    public Match(Integer pointEquipe1, Integer pointEquipe2, Stade stade, Long idEquipe1, Long idEquipe2, Journee journee) {
         this.pointEquipe1 = pointEquipe1;
         this.pointEquipe2 = pointEquipe2;
-        this.idStade = idStade;
+        this.stade = stade;
         this.idEquipe1 = idEquipe1;
         this.idEquipe2 = idEquipe2;
-        this.idJournee = idJournee;
+        this.journee = journee;
     }
 
     public Long getId() {
@@ -67,14 +64,6 @@ public class Match {
         this.pointEquipe2 = pointEquipe2;
     }
 
-    public Long getIdStade() {
-        return idStade;
-    }
-
-    public void setIdStade(Long idStade) {
-        this.idStade = idStade;
-    }
-
     public Long getIdEquipe1() {
         return idEquipe1;
     }
@@ -89,14 +78,6 @@ public class Match {
 
     public void setIdEquipe2(Long idEquipe2) {
         this.idEquipe2 = idEquipe2;
-    }
-
-    public Long getIdJournee() {
-        return idJournee;
-    }
-
-    public void setIdJournee(Long idJournee) {
-        this.idJournee = idJournee;
     }
 
     public Stade getStade() {
@@ -137,10 +118,8 @@ public class Match {
         sb.append("id=").append(id);
         sb.append(", pointEquipe1=").append(pointEquipe1);
         sb.append(", pointEquipe2=").append(pointEquipe2);
-        sb.append(", idStade=").append(idStade);
         sb.append(", idEquipe1=").append(idEquipe1);
         sb.append(", idEquipe2=").append(idEquipe2);
-        sb.append(", idJournee=").append(idJournee);
         sb.append(", stade=").append(stade);
         /*sb.append(", equipe1=").append(equipe1);
         sb.append(", equipe2=").append(equipe2);*/

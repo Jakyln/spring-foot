@@ -11,7 +11,6 @@ public class Journee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer numero;
-    private Long idChampionat;
 
     @OneToMany(mappedBy = "journee")
     private List<Match> matches;
@@ -22,10 +21,9 @@ public class Journee {
     public Journee() {
     }
 
-    public Journee(Long id, Integer numero, Long idChampionat) {
-        this.id = id;
+    public Journee(Integer numero, Championat championat) {
         this.numero = numero;
-        this.idChampionat = idChampionat;
+        this.championat = championat;
     }
 
     public Long getId() {
@@ -42,14 +40,6 @@ public class Journee {
 
     public void setNumero(Integer numero) {
         this.numero = numero;
-    }
-
-    public Long getIdChampionat() {
-        return idChampionat;
-    }
-
-    public void setIdChampionat(Long idChampionat) {
-        this.idChampionat = idChampionat;
     }
 
     public List<Match> getMatches() {
@@ -73,7 +63,6 @@ public class Journee {
         final StringBuilder sb = new StringBuilder("Journee{");
         sb.append("id=").append(id);
         sb.append(", numero=").append(numero);
-        sb.append(", idChampoinat=").append(idChampionat);
         sb.append(", matches=").append(matches);
         sb.append(", championat=").append(championat);
         sb.append('}');
