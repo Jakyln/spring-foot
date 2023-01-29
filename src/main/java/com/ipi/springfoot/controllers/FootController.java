@@ -297,6 +297,41 @@ public class FootController {
         return new RedirectView("/championnats");
     }
 
+    @GetMapping({ "championnat/{id}/newEquipe"})
+    public String championnatNewEquipe(Model model, @PathVariable long id) {
+        List<Equipe> equipesList = equipeService.recupererEquipeAll();
+        List<Equipe> equipesAlreadyIn = championatService.recupererChampionat(id).getEquipes();
+        equipesList.removeAll(equipesAlreadyIn);
+        Championat championat = championatService.recupererChampionat(id);
+        model.addAttribute("championat", championat);
+        model.addAttribute("equipesList", equipesList);
+        model.addAttribute("equipesAlreadyIn", equipesAlreadyIn);
+        return "championnatAddEquipe";
+    }
+
+    @GetMapping({ "/championnat/{idChampionnat}/addEquipe/{idEquipe}"})
+    public RedirectView championnatAddEquipe(Model model, @PathVariable long idChampionnat, @PathVariable long idEquipe) {
+        Championat championat = championatService.recupererChampionat(idChampionnat);
+        Equipe equipe = equipeService.recupererEquipe(idEquipe);
+        List<Equipe> equipes = championat.getEquipes();
+        equipes.add(equipe);
+        championat.setEquipes(equipes);
+        championatService.ajouterChampionat(championat);
+        return new RedirectView("/championnat/" + championat.getId() + "/newEquipe");
+    }
+
+    @GetMapping({ "championnat/{id}/newMatch"})
+    public String championnatNewMatch(Model model, @PathVariable long id, @ModelAttribute Equipe equipe) {
+        Championat championat = championatService.recupererChampionat(id);
+        List<Stade> stades = stadeService.recupererStadeAll();
+        model.addAttribute("championat", championat);
+        model.addAttribute("stades", stades);
+        return "championnatAddEquipe";
+    }
+
+
+// Init BDD ---------------------------------------------------------------------------------------------
+
     @PostConstruct
     private void init() {
         if (userService.recupererUserAll().isEmpty()) {
