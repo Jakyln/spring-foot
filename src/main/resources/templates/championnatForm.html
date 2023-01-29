@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<title>new championnat</title>
+
+<head>
+  <link
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+          rel="stylesheet"
+  />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+  <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous"
+  />
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous"
+  />
+</head>
+
+<body>
+<button
+        type="button"
+        class="btn btn-primary"
+        onclick="window.location.href='javascript:history.back()'"
+        style="margin-top: 10%; font-size: large; padding-right: 50px"
+>
+  Go back
+</button>
+<div class="container">
+  <div class="vertical-center">
+    <form id="championnatSaveForm" action="/championnat/saveChampionnat" method="post" data-th-object="${championat}">
+      <input type="hidden" data-th-value="*{id}" name="id">
+      <table class="table table-borderless">
+        <thead>
+        <tr>
+          <!--                <th scope="col" data-th-text="${'Team ' + equipe.nom}">Team Name</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">
+            <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="championatNom">Nom :</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="championatNom" id="championatNom" data-th-field="*{nom}">
+                      </div>
+                      </span>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th scope="row">
+            <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="championatDateDebut">Date début :</label>
+                      <div class="input-group">
+                        <input type="date" class="form-control" name="championatDateDebut" id="championatDateDebut" data-th-field="*{dateDebut}">
+                      </div>
+                      </span>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th scope="row">
+            <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="championatDateFin">Date fin :</label>
+                      <div class="input-group">
+                        <input type="date" class="form-control" name="championatDateFin" id="championatDateFin" data-th-field="*{dateFin}">
+                      </div>
+                      </span>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th scope="row">
+            <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="championatTypeClassement">Type de classement :</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="championatTypeClassement" id="championatTypeClassement" data-th-field="*{typeClassement}">
+                      </div>
+                      </span>
+            </div>
+          </th>
+        </tr>
+        <tr class="table-active content-holder">
+          <!--                <th scope="row" data-th-text="${'Stade de ' + equipe.nom}">-->
+          <!--                  Statut de lyon-->
+          <img
+                  id="image2"
+                  onclick="show2()"
+                  style="max-width: 3%; float: right"
+                  src="/img/fleche.png"
+          />
+          </th>
+        </tr>
+
+        <div>
+          <tr>
+            <th scope="row">
+              <span style="color: rgb(102, 101, 101); font-size: small">Pays :</span>
+              <select class="form-select" name="paysId">
+                <option data-th-each="unPays : ${allPays}" data-th-value="${unPays.id}" data-th-text="${unPays.nom}">
+                </option>
+              </select>
+            </th>
+          </tr>
+        </div>
+        </tbody>
+      </table>
+
+      <button type="submit">Envoyer</button>
+    </form>
+
+
+    <!--          <input form="equipeSaveForm" class="btn btn-primary" type="submit" value="Enregistrer"></input>-->
+  </div>
+</div>
+</body>
+
+</html>

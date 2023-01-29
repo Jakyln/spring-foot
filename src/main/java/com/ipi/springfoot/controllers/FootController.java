@@ -167,6 +167,30 @@ public class FootController {
         return "liste";
     }
 
+    @GetMapping({ "championnats"})
+    public String championnats(Model model) {
+        List<Championat> championats = championatService.recupererChampionatAll();
+        model.addAttribute("championats", championats);
+        return "indexListeRes";
+    }
+
+    @GetMapping({ "championnat/newChampionnat"})
+    public String newChampionnat(Model model, @ModelAttribute Championat championat) {
+        List<Pays> pays = paysService.recupererPaysAll();
+        model.addAttribute("allPays", pays);
+        model.addAttribute("championat", championat);
+        return "championnatForm";
+    }
+
+    @PostMapping(value = "championnat/saveChampionnat")
+    public RedirectView saveChampionnat(Model model, @Validated @ModelAttribute Championat championat, @RequestParam long paysId){
+        Pays pays = paysService.recupererPays(paysId);
+        championat.setPays(pays);
+        championat = championatService.ajouterChampionat(championat);
+        model.addAttribute("championat", championat);
+        return new RedirectView("/championnats");
+    }
+
     @PostConstruct
     private void init() {
         if (userService.recupererUserAll().isEmpty()) {
