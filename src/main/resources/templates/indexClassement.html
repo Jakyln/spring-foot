@@ -12,15 +12,37 @@
     />
 
     <title>Résultats</title>
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    media="all"
+    href="/src/main/resources/static/css/style.css"
+    th:href="@{/css/style.css}"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+    crossorigin="anonymous"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
   </head>
   <body>
     <div class="container">
       <div class="vertical-center">
-        <table
-          class="table table-borderless"
-          style="background-color: rgb(134, 205, 233)"
-        >
-          <div class="titre" data-th-text="${championat.nom}">Classement ligue 1 Uber Eats 2022-2023</div>
+        <table class="table table-borderless">
+          <br><br>
+          <div class="titre" data-th-text="${championat.nom}" style="font-size: larger;font-weight: bold;">ligue 1 Uber Eats 2022-2023</div>
           <table class="table">
             <thead>
               <tr>
@@ -60,6 +82,13 @@
             </tbody>
           </table>
         </table>
+        <br><br>
+        <div>
+          <a onclick="window.location.href='javascript:history.back()'" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
+            <span>Retour</span>
+          </a>
+          <br><br>
+        </div>
       </div>
       </div>
     </div>

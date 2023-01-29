@@ -1,57 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
 
     <title>Championats</title>
-</head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+      href="/src/main/resources/static/css/style.css"
+      th:href="@{/css/style.css}"
+    />
 
-<body>
-<div class="container">
-    <div class="row">
-        <div class="title mb-3">
-            <h2><strong>Liste des championats</strong></h2>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
 
-        </div>
-        <table class="table">
-            <tr data-th-each="championat : ${championats}">
-                <td>
-                    <div class="subtitle mb-2 text-muted row">
-                        <div class="col-1">
-                            <img
-                                    data-th-src="@{/img/{logo}(logo=${championat.logo})}"
-                                    alt="Logo"
-                                    width="50"
-                                    height="50"
-                            />
-                        </div>
-                        <div class="col-4">
-                            <div class="h-100 align-middle">
-                                <h5 data-th-text="${championat.nom}">Coupe du monde</h5>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <a data-th-href="@{/championnat/{id}/resultatsListe(id=${championat.id})}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
-                                <span>liste des matchs</span>
-                            </a>
-                        </div>
-                        <div class="col-4">
-                            <a data-th-href="@{'/details_championat?idChampionat=' + ${championat.id}}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
-                                <span>classement</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="bar-thin bg-light mb-2" style="height: 2px;"></div>
-                </td>
-            </tr>
+  <body>
+    <div class="container">
+      <div class="vertical-center">
+        <br /><br />
+        <h2><strong>Liste des championats</strong></h2>
+        <br /><br />
+        <table class="table table-borderless">
+          <tr data-th-each="championat : ${championats}">
+            <td>
+              <div class="subtitle mb-2 text-muted row">
+                <div class="col-1">
+                  <img
+                    data-th-src="@{/img/{logo}(logo=${championat.logo})}"
+                    alt="Logo"
+                    width="50"
+                    height="50"
+                  />
+                </div>
+                <div class="col-4">
+                  <div class="h-100 align-middle">
+                    <h5 data-th-text="${championat.nom}">Coupe du monde</h5>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <a
+                    data-th-href="@{/championnat/{id}/resultatsListe(id=${championat.id})}"
+                    class="btn btn-secondary btn-lg active"
+                    role="button"
+                    aria-pressed="true"
+                  >
+                    <span>Liste des matchs</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a
+                    data-th-href="@{'/details_championat?idChampionat=' + ${championat.id}}"
+                    class="btn btn-secondary btn-lg active"
+                    role="button"
+                    aria-pressed="true"
+                  >
+                    <span>Classement</span>
+                  </a>
+                </div>
+              </div>
+              <div class="bar-thin bg-light mb-2" style="height: 2px"></div>
+            </td>
+          </tr>
         </table>
+        <br />
         <div>
-            <a data-th-href="@{/championnat/newChampionnat}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
-                <span>ajouter un championnat</span>
-            </a>
+          <a
+            data-th-href="@{/championnat/newChampionnat}"
+            class="btn btn-secondary btn-lg active"
+            role="button"
+            aria-pressed="true"
+          >
+            <span>Ajouter un championnat</span>
+          </a>
+          <a
+            onclick="window.location.href='javascript:history.back()'"
+            class="btn btn-secondary btn-lg active"
+            role="button"
+            aria-pressed="true"
+          >
+            <span>Retour</span>
+          </a>
+          <br /><br />
         </div>
         <!-- <div class="bar-thin bg-light mb-2" style="height: 2px;"></div>
         <div class="rowLigues d-flex justify-content-between mt-2 col-9">
@@ -85,12 +138,13 @@
                 <div class="col-6 text-nowrap d-flex justify-content-center text-secondary">D1 féminine</div>
             </div>
         </div> -->
-
-
+      </div>
     </div>
-</div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

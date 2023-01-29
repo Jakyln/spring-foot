@@ -66,12 +66,13 @@ span.psw {
   margin: 0;
   position: absolute;
   top: 20%;
-  right: 30%;
-  left: 30%;
+  right: 20%;
+  left: 20%;
   background-color: rgb(134, 205, 233);
   border-radius: 15px;
   max-height: 50%;
   overflow: scroll;
+  text-align: center;
 }
 
 .vertical-center::-webkit-scrollbar {
@@ -146,7 +147,4 @@ th {
 .link:hover {
   background-color: aqua;
   cursor: help;
-}
-
-.retour {
 }

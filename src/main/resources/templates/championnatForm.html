@@ -24,16 +24,15 @@
 </head>
 
 <body>
-<button
-        type="button"
-        class="btn btn-primary"
-        onclick="window.location.href='javascript:history.back()'"
-        style="margin-top: 10%; font-size: large; padding-right: 50px"
->
-  Go back
-</button>
 <div class="container">
   <div class="vertical-center">
+    <div>
+      <br>
+      <a onclick="window.location.href='javascript:history.back()'" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">
+          <span>Retour</span>
+      </a>
+      <br><br>
+  </div>
     <form id="championnatSaveForm" action="/championnat/saveChampionnat" method="post" data-th-object="${championat}">
       <input type="hidden" data-th-value="*{id}" name="id">
       <table class="table table-borderless">
