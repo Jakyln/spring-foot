@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <title>Team name details</title>
+
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="window.location.href='javascript:history.back()'"
+      style="margin-top: 10%; font-size: large; padding-right: 50px"
+    >
+      Go back
+    </button>
+
+    <button
+            type="button"
+            class="btn btn-primary"
+            style="margin-top: 10%; font-size: large; padding-right: 50px"
+            data-th-href="@{/equipe/newEquipe}"
+    >
+        Ajouter une equipe
+    </button>
+    <div class="container">
+      <div class="vertical-center">
+        <form id="equipeSaveForm" action="/equipe/saveEquipe" method="post" data-th-object="${equipe}">
+            <input type="hidden" data-th-value="*{id}" name="id">
+            <table class="table table-borderless">
+            <thead>
+              <tr>
+<!--                <th scope="col" data-th-text="${'Team ' + equipe.nom}">Team Name</th>-->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                    <img data-th-if="${equipe.logo} != null" width="35px" height="35px" data-th-src="@{/img/{logo}(logo=${equipe.logo})}" alt="">
+                    <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="equipeNom">Nom :</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="equipeNom" id="equipeNom" data-th-field="*{nom}">
+                      </div>
+                      </span>
+                    </div>
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="equipeDate">Fondé en :</label>
+                      <div class="input-group">
+                        <input type="date" class="form-control" name="equipeDate" id="equipeDate" data-th-field="*{dateCreation}">
+                      </div>
+                      </span>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="equipePresident">Président :</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="equipePresident" id="equipePresident" data-th-field="*{president}">
+                      </div>
+                      </span>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="equipeEntraineur">Entraineur :</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="equipeEntraineur" id="equipeEntraineur" data-th-field="*{nomEntraineur}">
+                      </div>
+                      </span>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                  <th scope="row">
+                      <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="equipeTelephone">Telephone :</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="equipeTelephone" id="equipeTelephone" data-th-field="*{telephone}">
+                      </div>
+                      </span>
+                      </div>
+                  </th>
+              </tr>
+              <tr class="table-active">
+                <th scope="row">
+                  Administratif<img
+                    src="/img/fleche.png"
+                    id="image1"
+                    onclick="show1()"
+                    style="max-width: 3%; float: right"
+                  />
+                </th>
+              </tr>
+              <tr id="content1">
+                <th scope="row">
+                  <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="equipeSiteWeb">Site Web :</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="equipeSiteWeb" id="equipeSiteWeb" data-th-field="*{siteWeb}">
+                      </div>
+                      </span>
+                  </div>
+                </th>
+              </tr>
+              <tr id="content12">
+                <th scope="row">
+                  <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="equipeStatus">Status :</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="equipeStatus" id="equipeStatus" data-th-field="*{status}">
+                      </div>
+                      </span>
+                  </div>
+                </th>
+              </tr>
+              <tr id="content13">
+                <th scope="row">
+                  <div class="form-group">
+                      <span style="color: rgb(102, 101, 101); font-size: small">
+                      <label class="form-control-label" for="equipeSiege">Siege :</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="equipeSiege" id="equipeSiege" data-th-field="*{siege}">
+                      </div>
+                      </span>
+                  </div>
+                </th>
+              </tr>
+
+              <tr class="table-active content-holder">
+<!--                <th scope="row" data-th-text="${'Stade de ' + equipe.nom}">-->
+<!--                  Statut de lyon-->
+                <img
+                    id="image2"
+                    onclick="show2()"
+                    style="max-width: 3%; float: right"
+                    src="/img/fleche.png"
+                  />
+                </th>
+              </tr>
+
+
+
+              <div data-th-if="${equipe.stade} == null">
+                <tr>
+                  <th scope="row">
+                  <span style="color: rgb(102, 101, 101); font-size: small">Stade :</span>
+                      <select class="form-select" name="stadeId">
+                          <option data-th-each="unStade : ${allStades}" data-th-value="${unStade.id}" data-th-text="${unStade.nom}">
+                          </option>
+                      </select>
+                  </th>
+                </tr>
+              </div>
+
+
+              <div data-th-unless="${equipe.stade} == null">
+                <tr id="content2">
+                    <th scope="row">
+                        <span style="color: rgb(102, 101, 101); font-size: small">Stade :</span>
+                        <span data-th-text="*{stade.nom}">@text</span>
+
+                        <select class="form-select" id="stade" name="stadeId"> <!--data-th-field="*{stade}"-->
+                            <option data-th-each="unStade : ${allStades}" data-th-value="${unStade.id}" data-th-text="${unStade.nom}"> <!--data-th-selected="*{stade.nom}"-->
+                            </option>
+                        </select>
+<!--                        <select class="form-select" name="stadeId">
+                            <option data-th-each="unStade : ${allStades}" data-th-value="${unStade.id}" data-th-text="${unStade.nom}">
+                            </option>
+                        </select>-->
+
+                    </th>
+                </tr>
+                <tr id="content22">
+                    <th scope="row">
+                  <span style="color: rgb(102, 101, 101); font-size: small"
+                  >Capacité :</span
+                  ><span data-th-text="*{stade.capacite}">@text</span>
+                    </th>
+                </tr>
+                <tr id="content23">
+                    <th scope="row">
+                  <span style="color: rgb(102, 101, 101); font-size: small"
+                  >Adresse du stade :</span
+                  ><span data-th-text="*{stade.adresse}">@text</span>
+                    </th>
+                </tr>
+                <tr id="content24">
+                    <th scope="row">
+                  <span style="color: rgb(102, 101, 101); font-size: small"
+                  >Tel. Stade :</span
+                  ><span data-th-text="*{stade.telephone}">@text</span>
+                    </th>
+                </tr>
+            </div>
+
+            </tbody>
+          </table>
+
+            <button type="submit">Envoyer</button>
+        </form>
+
+
+          <!--          <input form="equipeSaveForm" class="btn btn-primary" type="submit" value="Enregistrer"></input>-->
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function show1() {
+      let element1 = document.getElementById("content1");
+      let element12 = document.getElementById("content12");
+      let element13 = document.getElementById("content13");
+      let fleche1 = document.getElementById("image1");
+      let hidden = element1.getAttribute("hidden");
+
+      if (hidden) {
+        element1.removeAttribute("hidden");
+        element12.removeAttribute("hidden");
+        element13.removeAttribute("hidden");
+      } else {
+        element1.setAttribute("hidden", "hidden");
+        element12.setAttribute("hidden", "hidden");
+        element13.setAttribute("hidden", "hidden");
+      }
+    }
+
+    function show2() {
+      let element2 = document.getElementById("content2");
+      let element22 = document.getElementById("content22");
+      let element23 = document.getElementById("content23");
+      let element24 = document.getElementById("content24");
+      let fleche2 = document.getElementById("image2");
+      let hidden2 = element2.getAttribute("hidden");
+
+      if (hidden2) {
+        element2.removeAttribute("hidden");
+        element22.removeAttribute("hidden");
+        element23.removeAttribute("hidden");
+        element24.removeAttribute("hidden");
+      } else {
+        element2.setAttribute("hidden", "hidden");
+        element22.setAttribute("hidden", "hidden");
+        element23.setAttribute("hidden", "hidden");
+        element24.setAttribute("hidden", "hidden");
+      }
+    }
+  </script>
+</html>

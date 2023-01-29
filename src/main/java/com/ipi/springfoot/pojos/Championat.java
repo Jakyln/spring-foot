@@ -1,6 +1,7 @@
 package com.ipi.springfoot.pojos;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,9 @@ public class Championat {
     private Long id;
     private String nom;
     private String logo;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDebut;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateFin;
     private Integer pointGagne;
     private Integer pointPerdu;

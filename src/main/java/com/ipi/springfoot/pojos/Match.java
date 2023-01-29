@@ -20,24 +20,24 @@ public class Match {
     @ManyToOne
     private Journee journee;
 
-    /*@ManyToOne
-    @JoinColumn(name = "id")
+    @ManyToOne
     private Equipe equipe1;
 
     @ManyToOne
-    @JoinColumn(name = "id")
-    private Equipe equipe2;*/
+    private Equipe equipe2;
 
     public Match() {
     }
 
-    public Match(Integer pointEquipe1, Integer pointEquipe2, Stade stade, Long idEquipe1, Long idEquipe2, Journee journee) {
+    public Match(Integer pointEquipe1, Integer pointEquipe2, Stade stade, Long idEquipe1, Long idEquipe2, Journee journee, Equipe equipe1, Equipe equipe2) {
         this.pointEquipe1 = pointEquipe1;
         this.pointEquipe2 = pointEquipe2;
         this.stade = stade;
         this.idEquipe1 = idEquipe1;
         this.idEquipe2 = idEquipe2;
         this.journee = journee;
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
     }
 
     public Long getId() {
@@ -88,7 +88,7 @@ public class Match {
         this.stade = stade;
     }
 
-    /*public Equipe getEquipe1() {
+    public Equipe getEquipe1() {
         return equipe1;
     }
 
@@ -102,7 +102,7 @@ public class Match {
 
     public void setEquipe2(Equipe equipe2) {
         this.equipe2 = equipe2;
-    }*/
+    }
 
     public Journee getJournee() {
         return journee;
@@ -121,8 +121,8 @@ public class Match {
         sb.append(", idEquipe1=").append(idEquipe1);
         sb.append(", idEquipe2=").append(idEquipe2);
         sb.append(", stade=").append(stade);
-        /*sb.append(", equipe1=").append(equipe1);
-        sb.append(", equipe2=").append(equipe2);*/
+        sb.append(", equipe1=").append(equipe1);
+        sb.append(", equipe2=").append(equipe2);
         sb.append(", journee=").append(journee);
         sb.append('}');
         return sb.toString();

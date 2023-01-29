@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Résultats de la compétition de football</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="vertical-center " >
+
+        <button
+                type="button"
+                class="btn btn-primary"
+                onclick="window.location.href='javascript:history.back()'"
+                style="margin-top: 10%; font-size: large; padding-right: 50px"
+        >
+          Go back
+        </button>
+
+        <table class="table table-borderless">
+          <form data-th-action="@{/championnat/{championnatId}/jours(championnatId=${championnat.id})}" method="post">
+            <div>
+              <label for="journeeId"> Séléction des jours</label>
+              <select class="form-select" name="journeeId" id="journeeId">
+                <option data-th-each="journee : ${allJournees}" data-th-value="${journee.id}" data-th-text="${journee.numero}">
+                </option>
+              </select>
+            </div>
+            <input type="hidden" data-th-value="${championnat.id}" name="championnatId">
+            <button type="submit">Afficher les match du jour séléctionné</button>
+          </form>
+          <button>
+            <a data-th-href="@{/championnat/{id}/resultatsListe(id=${championnat.id})}" class="link-light">
+              Réinitaliser les filtres
+            </a>
+          </button>
+
+          <h1>Résultats de la compétition de football</h1>
+          <table data-th-each="allMatchesForOneJournee : ${allMatchForAllJournees}">
+            <h2 style="background-color: rgb(85, 147, 172)"><span class="date" data-th-text="${allMatchesForOneJournee.key}">date</span></h2>
+            <tr data-th-each="match : ${allMatchesForOneJournee.value}">
+              <td>
+                <a data-th-href="@{/equipe/{id}/detail(id=${match.equipe1.id})}">
+                  <span class="equipe link" data-th-text="${match.equipe1.nom}">Équipe A</span>
+                  <img
+                          class="logoA"
+                          data-th-src="@{/img/{logo}(logo=${match.equipe1.logo})}"
+                          alt="Logo de l'équipe A"
+                  />
+                </a>
+
+              </td>
+              <td class="result" data-th-text="${match.pointEquipe1 + ' - ' + match.pointEquipe2}">2 - 1</td>
+              <td>
+                <a data-th-href="@{/equipe/{id}/detail(id=${match.equipe2.id})}">
+                  <img
+                    class="logoB"
+                  data-th-src="@{/img/{logo}(logo=${match.equipe2.logo})}"
+                  alt="Logo de l'équipe B"
+                  />
+                  <span class="equipe link" data-th-text="${match.equipe2.nom}">equipe link B</span>
+                </a>
+              </td>
+            </tr>
+          </table>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
