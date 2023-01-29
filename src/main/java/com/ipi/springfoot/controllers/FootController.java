@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.sql.Date;
+import java.util.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -86,20 +87,67 @@ public class FootController {
         return new RedirectView("" + equipe.getId() +"/detail");
     }
 
-    /*@GetMapping({"/", "details_championat"})
+    
+    @GetMapping({"/", "details_championat"})
     public String details_championat(Model model, @RequestParam long idChampionat) {
         Championat championat = championatService.recupererChampionat(idChampionat);
+        List<Equipe> equipes = championat.getEquipes();
         List<Journee> journees = championat.getJournees();
-        List<Match> matches = null;
+        journees.sort(Comparator.comparing(Journee::getNumero).reversed());
+        List<Match> matches = new ArrayList<>();
+        List<EquipeChampionatStats> equipeChampionatStats = new ArrayList<>();
         for (Journee journee: journees) {
             for (Match match: journee.getMatches()) {
                 matches.add(match);
             }
         }
-        model.addAttribute("championat", championat);
+        for (Equipe equipe: equipes) {
+            Integer totalPoint = 0;
+            Integer matchGagnee = 0;
+            Integer matchPerdu = 0;
+            Integer matchNul = 0;
+            Integer maxJournee = 0;
+            for (Match match: matches) {
+                if (equipe == match.getEquipe1()){
+                    totalPoint += match.getPointEquipe1();
+                    if (match.getPointEquipe1() > match.getPointEquipe2()){
+                        matchGagnee ++;
+                    }
+                    if (match.getPointEquipe1() < match.getPointEquipe2()){
+                        matchPerdu ++;
+                    }
+                    if (match.getPointEquipe1() == match.getPointEquipe2()){
+                        matchNul ++;
+                    }
+                    if (maxJournee < match.getJournee().getNumero()){
+                        maxJournee = match.getJournee().getNumero();
+                    }
+                }
+                if (equipe == match.getEquipe2()) {
+                    totalPoint += match.getPointEquipe2();
+                    if (match.getPointEquipe1() > match.getPointEquipe2()) {
+                        matchPerdu++;
+                    }
+                    if (match.getPointEquipe1() < match.getPointEquipe2()) {
+                        matchGagnee++;
+                    }
+                    if (match.getPointEquipe1() == match.getPointEquipe2()) {
+                        matchNul++;
+                    }
+                    if (maxJournee < match.getJournee().getNumero()){
+                        maxJournee = match.getJournee().getNumero();
+                    }
+                }
+            }
+            EquipeChampionatStats equipeStats = new EquipeChampionatStats(equipe, totalPoint, matchGagnee, matchPerdu, matchNul, maxJournee);
+            equipeChampionatStats.add(equipeStats);
+        }
+        equipeChampionatStats.sort(Comparator.comparing(EquipeChampionatStats::getTotalPoint).reversed());
 
-        return "details";
-    }*/
+        model.addAttribute("championat", championat);
+        model.addAttribute("equipeChampionatStats", equipeChampionatStats);
+        return "indexClassement";
+    }
 
     @GetMapping({"/championnat/{id}/resultatsListe"})
     public String listResultatsOfChampionnat(Model model, @PathVariable long id){
@@ -201,6 +249,10 @@ public class FootController {
                     stade2
             );
             equipeService.ajouterEquipe(equipe2);
+            List<Equipe> equipeChampionat = new ArrayList<>();
+            equipeChampionat.add(equipe1);
+            equipeChampionat.add(equipe2);
+            championat1.setEquipes(equipeChampionat);
 
             Journee journee1 = new Journee(1,championat1);
             journeeService.ajouterJournee(journee1);

@@ -43,16 +43,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-th-each="categorie : ${ categories }">
-                <th scope="row">1</th>
-                <td>Paris-SG</td>
-                <td>1^fleche</td>
-                <td>12</td>
-                <td>24</td>
-                <td>41</td>
-                <td>42</td>
-                <td>1</td>
-                <td>37</td>
+              <tr data-th-each="equipeStats,iter : ${ equipeChampionatStats }">
+                <th scope="row" data-th-text="${iter.index + 1}">1</th>
+                <td data-th-text="${equipeStats.equipe.nom}">Paris-SG</td>
+                <!--<td>1^fleche</td>-->
+                <td></td>
+                <td data-th-text="${equipeStats.totalPoint}">24</td>
+                <td data-th-text="${equipeStats.maxJournee}">41</td>
+                <td data-th-text="${equipeStats.matchGagnee}">42</td>
+                <td data-th-text="${equipeStats.matchNul}">1</td>
+                <td data-th-text="${equipeStats.matchPerdu}">37</td>
                 <td>47</td>
                 <td>+45</td>
                 <td>graph</td>
