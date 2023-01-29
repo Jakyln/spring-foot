@@ -9,7 +9,7 @@ import java.util.List;
 public interface StadeService {
     Stade ajouterStade(Stade stade);
     Stade recupererStade(Long idStade);
-    List<Stade> recupererSatdeAll();
+    List<Stade> recupererStadeAll();
     List<Equipe> recupererEquipeAll(Stade stade);
     List<Match> recupererMatchAll(Stade stade);
 }

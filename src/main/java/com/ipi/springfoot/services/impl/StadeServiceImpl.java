@@ -35,7 +35,7 @@ public class StadeServiceImpl implements StadeService {
     }
 
     @Override
-    public List<Stade> recupererSatdeAll() {
+    public List<Stade> recupererStadeAll() {
         return stadeDao.findAll();
     }
 
