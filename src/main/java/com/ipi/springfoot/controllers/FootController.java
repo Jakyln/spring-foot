@@ -299,6 +299,81 @@ public class FootController {
         }
     //endregion
 
+    @GetMapping({ "championnat/{id}/newEquipe"})
+    public String championnatNewEquipe(Model model, @PathVariable long id) {
+        List<Equipe> equipesList = equipeService.recupererEquipeAll();
+        List<Equipe> equipesAlreadyIn = championatService.recupererChampionat(id).getEquipes();
+        equipesList.removeAll(equipesAlreadyIn);
+        Championat championat = championatService.recupererChampionat(id);
+        model.addAttribute("championat", championat);
+        model.addAttribute("equipesList", equipesList);
+        model.addAttribute("equipesAlreadyIn", equipesAlreadyIn);
+        return "championnatAddEquipe";
+    }
+
+    @GetMapping({ "/championnat/{idChampionnat}/addEquipe/{idEquipe}"})
+    public RedirectView championnatAddEquipe(Model model, @PathVariable long idChampionnat, @PathVariable long idEquipe) {
+        Championat championat = championatService.recupererChampionat(idChampionnat);
+        Equipe equipe = equipeService.recupererEquipe(idEquipe);
+        List<Equipe> equipes = championat.getEquipes();
+        equipes.add(equipe);
+        championat.setEquipes(equipes);
+        championatService.ajouterChampionat(championat);
+        return new RedirectView("/championnat/" + championat.getId() + "/newEquipe");
+    }
+
+    @GetMapping({ "championnat/{idChampionnat}/newMatch"})
+    public String championnatNewMatch(Model model, @PathVariable long idChampionnat, @ModelAttribute Match match) {
+        Championat championat = championatService.recupererChampionat(idChampionnat);
+        List<Stade> stades = stadeService.recupererStadeAll();
+        model.addAttribute("championat", championat);
+        model.addAttribute("stades", stades);
+        model.addAttribute("match", match);
+        return "matchForm";
+    }
+
+    @PostMapping(value = "/championnat/{id}/match/saveMatch")
+    public RedirectView saveMatch(
+            Model model,
+            @Validated @ModelAttribute Match match,
+            @PathVariable long id,
+            @RequestParam long stadeId,
+            @RequestParam long equipe1Id,
+            @RequestParam long equipe2Id,
+            @RequestParam Long journeeId){
+        Stade stade = stadeService.recupererStade(stadeId);
+        Equipe equipe1 = equipeService.recupererEquipe(equipe1Id);
+        Equipe equipe2 = equipeService.recupererEquipe(equipe2Id);
+        Journee journee = journeeService.recupererJournee(journeeId);
+        match.setEquipe1(equipe1);
+        match.setEquipe2(equipe2);
+        match.setStade(stade);
+        if (journeeId > -1){
+            match.setJournee(journee);
+            matchService.ajouterMatch(match);
+        }
+        else{
+            Journee journeeNew = new Journee();
+            Championat championat = championatService.recupererChampionat(id);
+            Integer journeeNum = 0;
+            for (Journee journeeOne: championat.getJournees()) {
+                if (journeeOne.getNumero() > journeeNum){
+                    journeeNum = journeeOne.getNumero();
+                }
+            }
+            journeeNum++;
+            journeeNew.setNumero(journeeNum);
+            journeeNew.setChampionat(championat);
+            Journee journeeToAdd = journeeService.ajouterJournee(journeeNew);
+            match.setJournee(journeeToAdd);
+            matchService.ajouterMatch(match);
+        }
+        return new RedirectView("/championnat/" + id + "/resultatsListe");
+    }
+
+
+// Init BDD ---------------------------------------------------------------------------------------------
+
     @PostConstruct
     private void init() {
         if (userService.recupererUserAll().isEmpty()) {

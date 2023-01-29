@@ -30,6 +30,35 @@
   <body>
     <div class="container">
       <div class="vertical-center " >
+        <div class="row">
+          <div class="col-4">
+            <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="window.location.href='javascript:history.back()'"
+            >
+              Go back
+            </button>
+          </div>
+          <div class="col-4">
+            <a
+                    data-th-href="@{/championnat/{id}/newEquipe(id=${championnat.id})}"
+                    class="btn btn-primary btn-md active"
+                    role="button"
+                    aria-pressed="true">
+              <span>Ajouter une equipe au championnat</span>
+            </a>
+          </div>
+          <div class="col-4">
+            <a
+                    data-th-href="@{/championnat/{id}/newMatch(id=${championnat.id})}"
+                    class="btn btn-primary btn-md active"
+                    role="button"
+                    aria-pressed="true">
+              <span>Ajouter un match</span>
+            </a>
+          </div>
+        </div>
         <table class="table table-borderless">
           <form data-th-action="@{/championnat/{championnatId}/jours(championnatId=${championnat.id})}" method="post">
             <div>

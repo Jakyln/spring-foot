@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+            integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+            crossorigin="anonymous"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+    />
+    <title>Résultats de la compétition de football</title>
+</head>
+<body>
+<div class="container">
+    <div class="vertical-center " >
+        <button
+                type="button"
+                class="btn btn-primary"
+                onclick="window.location.href='javascript:history.back()'"
+        >
+            Go back
+        </button>
+        <table class="table table-borderless">
+            <tr>
+              <td>Equipes participantes</td>
+            </tr>
+            <tr data-th-each="equipeIn : ${equipesAlreadyIn}">
+                <td data-th-text="${equipeIn.nom}">equipe 1</td>
+            </tr>
+            <tr>
+                <td>Equipes non participantes</td>
+            </tr>
+            <tr data-th-each="equipeNin : ${equipesList}">
+                <td>
+                    <a class="link-dark" data-th-href="@{'/championnat/' + ${championat.id} +'/addEquipe/' + ${equipeNin.id}}">
+                        <span data-th-text="${equipeNin.nom}">Équipe A</span>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
