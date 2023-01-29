@@ -16,43 +16,33 @@
             <h2><strong>Résultats par compétitions</strong></h2>
 
         </div>
-        <div class="bar bg-light mb-1" style="height: 12px;"></div>
-        <div class="subtitle mb-2 text-muted">
-            <h5>FRANCE</h5>
+        <div data-th-each="championnatMap : ${allChampionnatsMap}">
+
+            <div class="bar bg-light mb-1" style="height: 12px;"></div>
+            <div class="subtitle mb-2 text-muted">
+                <h5>
+                    <span data-th-text="${championnatMap.key}"></span>
+                </h5>
+            </div>
+            <div class="bar-thin bg-light mb-2" style="height: 2px;"></div>
+            <div class="rowLigues d-flex justify-content-between mt-2 col-9"  data-th-each="championnat : ${championnatMap.value}">
+                <div class="Ligue row">
+                    <a data-th-href="@{/championnat/{id}/resultatsListe(id=${championnat.id})}">
+
+                        <div class="col-3 d-flex align-items-center justify-content-end">
+                            <img src="images/flagFrance.png" data-th-src="@{/img/{logo}(logo=${championnat.logo})}" alt="franceFlag" style="width:30px;height:30px">
+
+                        </div>
+                        <div class="col-12 d-flex justify-content-end text-secondary" data-th-text="${championnat.nom}"></div>
+                    </a>
+
+                </div>
+            </div>
+
+
 
         </div>
-        <div class="bar-thin bg-light mb-2" style="height: 2px;"></div>
-        <div class="rowLigues d-flex justify-content-between mt-2 col-9">
-            <div class="Ligue row">
-                <div class="col-6 d-flex align-items-center justify-content-end">
-                    <img src="images/flagFrance.png" alt="franceFlag" style="width:20px;height:20px">
 
-                </div>
-                <div class="col-6 text-nowrap d-flex justify-content-end text-secondary">Ligue 1</div>
-            </div>
-            <div class="Ligue row">
-                <div class="col-6 d-flex align-items-center justify-content-end">
-                    <img src="images/flagFrance.png" alt="franceFlag" style="width:20px;height:20px">
-
-
-                </div>
-                <div class="col-6 text-nowrap d-flex justify-content-end text-secondary">Ligue 2</div>
-            </div>
-            <div class="Ligue row">
-                <div class="col-6 d-flex align-items-center justify-content-end">
-                    <img src="images/flagFrance.png" alt="franceFlag" style="width:20px;height:20px">
-
-                </div>
-                <div class="col-6 text-nowrap d-flex justify-content-end text-secondary">National</div>
-            </div>
-            <div class="Ligue row">
-                <div class="col-6 d-flex align-items-center justify-content-end">
-                    <img src="images/flagFrance.png" alt="franceFlag" style="width:20px;height:20px">
-
-                </div>
-                <div class="col-6 text-nowrap d-flex justify-content-center text-secondary">D1 féminine</div>
-            </div>
-        </div>
 
 
     </div>

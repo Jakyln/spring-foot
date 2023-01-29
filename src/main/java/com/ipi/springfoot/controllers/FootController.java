@@ -18,6 +18,7 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class FootController {
@@ -78,6 +79,100 @@ public class FootController {
     }
 
 
+    @GetMapping({ "stade/newStade"})
+    public String newStade(Model model, @ModelAttribute Stade stade) {
+        model.addAttribute("stade", stade);
+        return "stadeDetail";
+    }
+
+
+    @GetMapping({ "/","login"})
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping({ "accueil"})
+    public String accueil() {
+        return "accueil";
+    }
+
+
+    @GetMapping({ "championnat/liste"})
+    public String championnatList(Model model) {
+        List<Championat> allChampionnats = championatService.recupererChampionatAll();
+        List<Pays> allPays = paysService.recupererPaysAll();
+        HashMap<String,List<Championat>> championnats = new HashMap<>();
+
+        for (Pays pays : allPays) {
+            List<Championat> allChampionnatsOfPays = new ArrayList<>();
+            for (Championat championnat : allChampionnats) {
+                if(pays.equals(championnat.getPays())){
+                    allChampionnatsOfPays.add(championnat);
+                }
+            }
+            championnats.put(pays.getNom(),allChampionnatsOfPays);
+        }
+
+        model.addAttribute("allChampionnatsMap",championnats);
+        return "indexListeRes";
+    }
+
+
+
+    @GetMapping({ "stade/liste"})
+    public String stadeList(Model model) {
+        List<Stade> stadeList = stadeService.recupererStadeAll();
+        model.addAttribute("allStades",stadeList);
+        return "stadeList";
+    }
+
+    @GetMapping({ "stade/{id}/detail"})
+    public String detailStade(Model model,@PathVariable long id) {
+        List<Stade> stadeList = stadeService.recupererStadeAll();
+        Stade stade = stadeService.recupererStade(id);
+        model.addAttribute("stade",stade);
+        return "stadeDetail";
+    }
+
+    @PostMapping({"logUser"})
+    public RedirectView logUser(Model model,@RequestParam String uname, @RequestParam String psw) {
+        List<User> users = userService.recupererUserAll();
+        boolean connected = false;
+        for (User userOfBdd : users) {
+            if (Objects.equals(uname, userOfBdd.getLogin()) && Objects.equals(psw, userOfBdd.getMdp())) {
+                connected = true;
+                break;
+            }
+        }
+
+        if(connected){
+            return new RedirectView("accueil");
+        }
+        else{
+            return new RedirectView("");
+        }
+    }
+
+
+    @PostMapping({"saveUser"})
+    public RedirectView saveUser(Model model,@RequestParam String uname, @RequestParam String psw) {
+        User user = new User();
+        user.setLogin(uname);
+        user.setMdp(psw);
+        userService.ajouterUser(user);
+        return new RedirectView("/");
+
+    }
+
+    @GetMapping({"addUser"})
+    public String addUser() {
+        return "create";
+    }
+
+
+
+
+
     @PostMapping(value = "equipe/saveEquipe")
     public RedirectView saveEquipe(Model model, @Validated @ModelAttribute Equipe equipe, @RequestParam long stadeId){
         Stade stade = stadeService.recupererStade(stadeId);
@@ -87,8 +182,16 @@ public class FootController {
         return new RedirectView("" + equipe.getId() +"/detail");
     }
 
+
+    @PostMapping(value = "stade/saveStade")
+    public RedirectView saveStade(Model model, @Validated @ModelAttribute Stade stade){
+        stade = stadeService.ajouterStade(stade);
+        model.addAttribute("stade", stade);
+        return new RedirectView("" + stade.getId() +"/detail");
+    }
+
     
-    @GetMapping({"/", "details_championat"})
+    @GetMapping({ "details_championat"})
     public String details_championat(Model model, @RequestParam long idChampionat) {
         Championat championat = championatService.recupererChampionat(idChampionat);
         List<Equipe> equipes = championat.getEquipes();
@@ -149,6 +252,31 @@ public class FootController {
         return "indexClassement";
     }
 
+
+    @PostMapping({ "championnat/{championnatId}/jours"})
+    public RedirectView allMatchOfJourneeIdAndChampionnat(Model model, @RequestParam long championnatId, @RequestParam long journeeId) {
+        return new RedirectView("/championnat/" + championnatId + "/jours/" + journeeId + "/resultatsListe");
+    }
+
+
+    @GetMapping({"/championnat/{championnatId}/jours/{journeeId}/resultatsListe"})
+    public String listResultatsOfChampionnatAndJournee(Model model, @PathVariable long championnatId, @PathVariable long journeeId){
+        Championat championat = championatService.recupererChampionat(championnatId);
+        Journee journee = journeeService.recupererJournee(journeeId);
+        HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
+        List<Journee> journees = championat.getJournees();
+
+        List<Match> allMatchOfJournee = journee.getMatches();
+
+        allMatchOfChampionnat.put(journee.getNumero().toString(),allMatchOfJournee);
+
+        model.addAttribute("allJournees",journees);
+        model.addAttribute("championnat",championat);
+        model.addAttribute("allMatchForAllJournees",allMatchOfChampionnat);
+
+        return "liste";
+    }
+
     @GetMapping({"/championnat/{id}/resultatsListe"})
     public String listResultatsOfChampionnat(Model model, @PathVariable long id){
         Equipe equipe = equipeService.recupererEquipe(id);
@@ -161,7 +289,8 @@ public class FootController {
 
             allMatchOfChampionnat.put(journee.getNumero().toString(),allMatchOfJournee);
         }
-        model.addAttribute("championat",championat);
+        model.addAttribute("allJournees",journees);
+        model.addAttribute("championnat",championat);
         model.addAttribute("allMatchForAllJournees",allMatchOfChampionnat);
 
         return "liste";

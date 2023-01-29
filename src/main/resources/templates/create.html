@@ -11,23 +11,24 @@
 </head>
 
 <body>
-    <form action="/action_page.php">
+    <form action="/saveUser" method="post">
         <h1>Create an account</h1>
 
         <div class="formcontainer">
             <div class="container">
                 <label for="uname"><strong>Username</strong></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <input type="text" placeholder="Enter Username" name="uname" id="uname"  required>
 
                 <label for="psw"><strong>Password</strong></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-                <label for="psw"><strong>Confirm password</strong></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                <label for="psw2"><strong>Confirm password</strong></label>
+                <input type="password" placeholder="Enter Password" name="psw2" id="psw2" required>
             </div>
             <button type="submit"><strong>Create account</strong></button>
             <div class="d-flex flex-row align-items-center justify-content-between">
                 <a href="login.html">Log in</a>
             </div>
         </div>
+        <button type="submit">Login</button>
     </form>
 </body>
