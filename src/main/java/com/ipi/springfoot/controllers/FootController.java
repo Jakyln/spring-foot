@@ -17,6 +17,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class FootController {
@@ -77,6 +78,59 @@ public class FootController {
     }
 
 
+    @GetMapping({ "/","login"})
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping({ "accueil"})
+    public String accueil() {
+        return "accueil";
+    }
+
+
+    @GetMapping({ "championnat/liste"})
+    public String championnatList(Model model) {
+        List<Championat> allChampionnats = championatService.recupererChampionatAll();
+        List<Pays> allPays = paysService.recupererPaysAll();
+        HashMap<String,List<Championat>> championnats = new HashMap<>();
+
+        for (Pays pays : allPays) {
+            List<Championat> allChampionnatsOfPays = new ArrayList<>();
+            for (Championat championnat : allChampionnats) {
+                if(pays.equals(championnat.getPays())){
+                    allChampionnatsOfPays.add(championnat);
+                }
+            }
+            championnats.put(pays.getNom(),allChampionnatsOfPays);
+        }
+
+        model.addAttribute("allChampionnatsMap",championnats);
+        return "indexListeRes";
+    }
+
+    @PostMapping({"logUser"})
+    public RedirectView LogUser(Model model,@RequestParam String uname, @RequestParam String psw) {
+        List<User> users = userService.recupererUserAll();
+        boolean connected = false;
+        for (User userOfBdd : users) {
+            if (Objects.equals(uname, userOfBdd.getLogin()) && Objects.equals(psw, userOfBdd.getMdp())) {
+                connected = true;
+                break;
+            }
+        }
+
+        if(connected){
+            return new RedirectView("accueil");
+        }
+        else{
+            return new RedirectView("");
+        }
+    }
+
+
+
+
     @PostMapping(value = "equipe/saveEquipe")
     public RedirectView saveEquipe(Model model, @Validated @ModelAttribute Equipe equipe, @RequestParam long stadeId){
         Stade stade = stadeService.recupererStade(stadeId);
@@ -86,7 +140,8 @@ public class FootController {
         return new RedirectView("" + equipe.getId() +"/detail");
     }
 
-    /*@GetMapping({"/", "details_championat"})
+    
+    @GetMapping({ "details_championat"})
     public String details_championat(Model model, @RequestParam long idChampionat) {
         Championat championat = championatService.recupererChampionat(idChampionat);
         List<Journee> journees = championat.getJournees();
@@ -99,7 +154,7 @@ public class FootController {
         model.addAttribute("championat", championat);
 
         return "details";
-    }*/
+    }
 
     @GetMapping({"/championnat/{id}/resultatsListe"})
     public String listResultatsOfChampionnat(Model model, @PathVariable long id){
