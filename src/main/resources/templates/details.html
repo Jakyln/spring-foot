@@ -34,8 +34,9 @@
     </button>
     <div class="container">
       <div class="vertical-center">
-        <form id="equipeSaveForm" data-th-action="@{saveEquipe}" method="post" data-th-object="${equipe}">
-          <table class="table table-borderless">
+        <form id="equipeSaveForm" action="/equipe/saveEquipe" method="post" data-th-object="${equipe}">
+            <input type="hidden" data-th-value="*{id}" name="id">
+            <table class="table table-borderless">
             <thead>
               <tr>
 <!--                <th scope="col" data-th-text="${'Team ' + equipe.nom}">Team Name</th>-->
@@ -106,7 +107,7 @@
               <tr class="table-active">
                 <th scope="row">
                   Administratif<img
-                    data-th-src="@{img/fleche.png}"
+                    src="/img/fleche.png"
                     id="image1"
                     onclick="show1()"
                     style="max-width: 3%; float: right"
@@ -157,7 +158,7 @@
                     id="image2"
                     onclick="show2()"
                     style="max-width: 3%; float: right"
-                    data-th-src="@{img/fleche.png}"
+                    src="/img/fleche.png"
                   />
                 </th>
               </tr>
@@ -183,7 +184,7 @@
                         <span style="color: rgb(102, 101, 101); font-size: small">Stade :</span>
                         <span data-th-text="*{stade.nom}">@text</span>
 
-                        <select class="form-select" id="stade" name="stade"> <!--data-th-field="*{stade}"-->
+                        <select class="form-select" id="stade" name="stadeId"> <!--data-th-field="*{stade}"-->
                             <option data-th-each="unStade : ${allStades}" data-th-value="${unStade.id}" data-th-text="${unStade.nom}"> <!--data-th-selected="*{stade.nom}"-->
                             </option>
                         </select>

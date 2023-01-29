@@ -105,8 +105,6 @@ public class FootController {
     public String listResultatsOfChampionnat(Model model, @PathVariable long id){
         Equipe equipe = equipeService.recupererEquipe(id);
         Championat championat = championatService.recupererChampionat(id);
-        //HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
-        //List<List<Match>> allMatchOfChampionnat = new ArrayList<>();
         HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
 
         List<Journee> journees = championat.getJournees();
@@ -115,12 +113,10 @@ public class FootController {
 
             allMatchOfChampionnat.put(journee.getNumero().toString(),allMatchOfJournee);
         }
-
-
         model.addAttribute("championat",championat);
         model.addAttribute("allMatchForAllJournees",allMatchOfChampionnat);
 
-        return "liste"; // ou page details
+        return "liste";
     }
 
     @PostConstruct
