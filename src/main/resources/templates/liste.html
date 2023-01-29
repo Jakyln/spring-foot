@@ -25,6 +25,23 @@
     <div class="container">
       <div class="vertical-center " >
 
+        <button
+                type="button"
+                class="btn btn-primary"
+                onclick="window.location.href='javascript:history.back()'"
+                style="margin-top: 10%; font-size: large; padding-right: 50px"
+        >
+          Go back
+        </button>
+
+        <button
+                type="button"
+                class="btn btn-primary"
+                style="margin-top: 10%; font-size: large; padding-right: 50px"
+                data-th-href="@{/equipe/newEquipe}"
+        >
+          Ajouter une equipe
+        </button>
 
         <table class="table table-borderless">
           <form data-th-action="@{/championnat/{championnatId}/jours(championnatId=${championnat.id})}" method="post">

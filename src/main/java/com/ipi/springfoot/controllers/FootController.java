@@ -78,6 +78,13 @@ public class FootController {
     }
 
 
+    @GetMapping({ "stade/newStade"})
+    public String newStade(Model model, @ModelAttribute Stade stade) {
+        model.addAttribute("stade", stade);
+        return "stadeDetail";
+    }
+
+
     @GetMapping({ "/","login"})
     public String login() {
         return "login";
@@ -107,6 +114,23 @@ public class FootController {
 
         model.addAttribute("allChampionnatsMap",championnats);
         return "indexListeRes";
+    }
+
+
+
+    @GetMapping({ "stade/liste"})
+    public String stadeList(Model model) {
+        List<Stade> stadeList = stadeService.recupererStadeAll();
+        model.addAttribute("allStades",stadeList);
+        return "stadeList";
+    }
+
+    @GetMapping({ "stade/{id}/detail"})
+    public String detailStade(Model model,@PathVariable long id) {
+        List<Stade> stadeList = stadeService.recupererStadeAll();
+        Stade stade = stadeService.recupererStade(id);
+        model.addAttribute("stade",stade);
+        return "stadeDetail";
     }
 
     @PostMapping({"logUser"})
@@ -142,8 +166,8 @@ public class FootController {
     @GetMapping({"addUser"})
     public String addUser() {
         return "create";
-
     }
+
 
 
 
@@ -155,6 +179,14 @@ public class FootController {
         equipe = equipeService.ajouterEquipe(equipe);
         model.addAttribute("equipe", equipe);
         return new RedirectView("" + equipe.getId() +"/detail");
+    }
+
+
+    @PostMapping(value = "stade/saveStade")
+    public RedirectView saveStade(Model model, @Validated @ModelAttribute Stade stade){
+        stade = stadeService.ajouterStade(stade);
+        model.addAttribute("stade", stade);
+        return new RedirectView("" + stade.getId() +"/detail");
     }
 
     

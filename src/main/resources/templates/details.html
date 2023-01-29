@@ -32,6 +32,15 @@
     >
       Go back
     </button>
+
+    <button
+            type="button"
+            class="btn btn-primary"
+            style="margin-top: 10%; font-size: large; padding-right: 50px"
+            data-th-href="@{/equipe/newEquipe}"
+    >
+        Ajouter une equipe
+    </button>
     <div class="container">
       <div class="vertical-center">
         <form id="equipeSaveForm" action="/equipe/saveEquipe" method="post" data-th-object="${equipe}">
