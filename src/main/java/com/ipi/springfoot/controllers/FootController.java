@@ -173,6 +173,31 @@ public class FootController {
         return "details";
     }
 
+
+    @PostMapping({ "championnat/{championnatId}/jours"})
+    public RedirectView allMatchOfJourneeIdAndChampionnat(Model model, @RequestParam long championnatId, @RequestParam long journeeId) {
+        return new RedirectView("/championnat/" + championnatId + "/jours/" + journeeId + "/resultatsListe");
+    }
+
+
+    @GetMapping({"/championnat/{championnatId}/jours/{journeeId}/resultatsListe"})
+    public String listResultatsOfChampionnatAndJournee(Model model, @PathVariable long championnatId, @PathVariable long journeeId){
+        Championat championat = championatService.recupererChampionat(championnatId);
+        Journee journee = journeeService.recupererJournee(journeeId);
+        HashMap<String,List<Match>> allMatchOfChampionnat = new HashMap<>();
+        List<Journee> journees = championat.getJournees();
+
+        List<Match> allMatchOfJournee = journee.getMatches();
+
+        allMatchOfChampionnat.put(journee.getNumero().toString(),allMatchOfJournee);
+
+        model.addAttribute("allJournees",journees);
+        model.addAttribute("championnat",championat);
+        model.addAttribute("allMatchForAllJournees",allMatchOfChampionnat);
+
+        return "liste";
+    }
+
     @GetMapping({"/championnat/{id}/resultatsListe"})
     public String listResultatsOfChampionnat(Model model, @PathVariable long id){
         Equipe equipe = equipeService.recupererEquipe(id);
@@ -185,7 +210,8 @@ public class FootController {
 
             allMatchOfChampionnat.put(journee.getNumero().toString(),allMatchOfJournee);
         }
-        model.addAttribute("championat",championat);
+        model.addAttribute("allJournees",journees);
+        model.addAttribute("championnat",championat);
         model.addAttribute("allMatchForAllJournees",allMatchOfChampionnat);
 
         return "liste";
