@@ -110,7 +110,7 @@ public class FootController {
     }
 
     @PostMapping({"logUser"})
-    public RedirectView LogUser(Model model,@RequestParam String uname, @RequestParam String psw) {
+    public RedirectView logUser(Model model,@RequestParam String uname, @RequestParam String psw) {
         List<User> users = userService.recupererUserAll();
         boolean connected = false;
         for (User userOfBdd : users) {
@@ -126,6 +126,23 @@ public class FootController {
         else{
             return new RedirectView("");
         }
+    }
+
+
+    @PostMapping({"saveUser"})
+    public RedirectView saveUser(Model model,@RequestParam String uname, @RequestParam String psw) {
+        User user = new User();
+        user.setLogin(uname);
+        user.setMdp(psw);
+        userService.ajouterUser(user);
+        return new RedirectView("/");
+
+    }
+
+    @GetMapping({"addUser"})
+    public String addUser() {
+        return "create";
+
     }
 
 
